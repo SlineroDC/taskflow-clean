@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow | Error Central</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#ffee57",
+              "primary-fixed": "#bcf161",
+              "on-tertiary": "#696000",
+              "primary-dim": "#aee254",
+              "tertiary-dim": "#f0e04a",
+              "tertiary-fixed": "#ffee57",
+              "on-primary-container": "#182700",
+              "surface-bright": "#1f2b48",
+              "outline-variant": "#40485c",
+              "on-tertiary-fixed": "#4c4500",
+              "on-secondary": "#515600",
+              "outline": "#6d758b",
+              "secondary-fixed-dim": "#d4dd51",
+              "on-secondary-fixed-variant": "#5b6000",
+              "primary": "#bcf161",
+              "on-surface": "#dee5ff",
+              "secondary-container": "#5d6300",
+              "on-surface-variant": "#a3abc3",
+              "error-container": "#b92902",
+              "tertiary-fixed-dim": "#f0e04a",
+              "on-primary-fixed-variant": "#436300",
+              "on-background": "#dee5ff",
+              "tertiary": "#fff9e6",
+              "secondary-fixed": "#e2eb5d",
+              "on-primary-fixed": "#2d4400",
+              "surface-container-low": "#0a1327",
+              "error": "#ff7351",
+              "surface-container-highest": "#1a253f",
+              "on-primary": "#3c5800",
+              "on-tertiary-fixed-variant": "#6b6200",
+              "on-error": "#450900",
+              "surface-variant": "#1a253f",
+              "primary-container": "#7faf25",
+              "surface-container": "#0f192f",
+              "primary-fixed-dim": "#aee254",
+              "surface-container-lowest": "#000000",
+              "on-error-container": "#ffd2c8",
+              "inverse-surface": "#faf8ff",
+              "secondary-dim": "#d4dd51",
+              "inverse-primary": "#486900",
+              "inverse-on-surface": "#4d556a",
+              "surface-dim": "#060e1f",
+              "secondary": "#e2eb5d",
+              "error-dim": "#d53d18",
+              "surface-tint": "#bcf161",
+              "surface": "#060e1f",
+              "on-secondary-container": "#f8ff90",
+              "surface-container-high": "#141f37",
+              "on-secondary-fixed": "#3f4300",
+              "on-tertiary-container": "#605800",
+              "background": "#060e1f"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .neon-glow {
+        text-shadow: 0 0 20px rgba(188, 241, 97, 0.6);
+      }
+      .glitch-effect {
+        position: relative;
+        display: inline-block;
+      }
+      .glitch-effect::before,
+      .glitch-effect::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .glitch-effect::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff7351;
+        clip: rect(44px, 450px, 56px, 0);
+      }
+      .glitch-effect::after {
+        left: -2px;
+        text-shadow: -2px 0 #bcf161;
+        clip: rect(44px, 450px, 56px, 0);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden">
+<!-- TaskFlow Identity Header (Abstracted from TopNavBar) -->
+<header class="fixed top-0 left-0 right-0 h-16 flex items-center px-8 z-50 bg-surface/80 backdrop-blur-xl">
+<div class="text-2xl font-black text-primary uppercase tracking-widest font-headline">TaskFlow</div>
+</header>
+<main class="min-h-screen flex flex-col items-center justify-center pt-16">
+<!-- Bento-style Layout for Error States -->
+<div class="max-w-6xl w-full px-6 py-12 grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Error 404 Section: Giant Display -->
+<section class="md:col-span-7 bg-surface-container rounded-xl p-8 md:p-16 flex flex-col justify-center items-start relative overflow-hidden group min-h-[500px]">
+<!-- Background Decorative Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, #40485c 1px, transparent 0); background-size: 32px 32px;"></div>
+<div class="relative z-10">
+<span class="font-headline font-extrabold text-[120px] md:text-[180px] leading-none text-primary neon-glow glitch-effect tracking-tighter" data-text="404">
+                        404
+                    </span>
+<div class="mt-8 space-y-6">
+<h1 class="text-3xl md:text-4xl font-headline font-bold text-on-surface max-w-md leading-tight">
+                            Ups... Parece que esta tarea se perdió en el backlog
+                        </h1>
+<p class="text-on-surface-variant text-lg max-w-sm">
+                            El recurso que buscas ha sido archivado o nunca existió en este repositorio.
+                        </p>
+<a class="inline-flex items-center px-8 py-4 bg-primary text-on-primary-container font-bold rounded-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] hover:scale-105 active:scale-95 group" href="#">
+<span class="material-symbols-outlined mr-2">dashboard</span>
+                            Volver al Dashboard
+                        </a>
+</div>
+</div>
+<!-- Abstract Visual element -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
+</section>
+<!-- Error 403 Section: Security focus -->
+<section class="md:col-span-5 bg-surface-container-low rounded-xl p-8 md:p-12 flex flex-col items-center justify-center text-center border border-outline-variant/15 relative">
+<div class="w-24 h-24 rounded-full bg-error-container/20 flex items-center justify-center mb-8 relative">
+<span class="material-symbols-outlined text-error text-5xl" style="font-variation-settings: 'FILL' 1;">lock</span>
+<div class="absolute inset-0 rounded-full border-2 border-error/30 animate-pulse"></div>
+</div>
+<h2 class="text-2xl font-headline font-bold text-on-surface mb-2">
+                    Acceso Denegado (403)
+                </h2>
+<p class="text-on-surface-variant mb-10 text-balance">
+                    No tienes los permisos necesarios para modificar este proyecto. Contacta al administrador del Academy.
+                </p>
+<div class="w-full space-y-4">
+<a class="block w-full py-4 border border-outline-variant/40 text-primary font-bold rounded-lg hover:bg-surface-variant transition-colors active:scale-95 text-center" href="#">
+                        Regresar a un lugar seguro
+                    </a>
+<button class="flex items-center justify-center w-full text-on-surface-variant hover:text-on-surface transition-colors py-2 text-sm font-medium">
+<span class="material-symbols-outlined text-sm mr-2">help_outline</span>
+                        Solicitar Acceso
+                    </button>
+</div>
+<!-- Asymmetric background accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-error/40 to-transparent"></div>
+</section>
+<!-- Secondary Knowledge/Academy Context (Platzi-style "Why this happened") -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+<div class="bg-surface-container-high p-6 rounded-lg flex items-start space-x-4">
+<div class="p-3 rounded-md bg-surface-variant">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider mb-1">Status Code</h4>
+<p class="text-xs text-on-surface-variant">Client-side routing error or expired session tokens.</p>
+</div>
+</div>
+<div class="bg-surface-container-high p-6 rounded-lg flex items-start space-x-4">
+<div class="p-3 rounded-md bg-surface-variant">
+<span class="material-symbols-outlined text-primary">school</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider mb-1">Kinetic Academy</h4>
+<p class="text-xs text-on-surface-variant">Check your curriculum access or project assignment.</p>
+</div>
+</div>
+<div class="bg-surface-container-high p-6 rounded-lg flex items-start space-x-4">
+<div class="p-3 rounded-md bg-surface-variant">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface text-sm uppercase tracking-wider mb-1">Quick Help</h4>
+<p class="text-xs text-on-surface-variant">Report this issue if you think this is a technical glitch.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer as per JSON -->
+<footer class="w-full py-12 border-t border-outline-variant/15 mt-20">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8 space-y-4 md:space-y-0">
+<div class="text-primary font-bold font-headline">TaskFlow</div>
+<div class="flex space-x-8">
+<a class="text-on-surface/40 hover:text-primary transition-colors text-xs font-inter" href="#">Privacy Policy</a>
+<a class="text-on-surface/40 hover:text-primary transition-colors text-xs font-inter" href="#">Terms of Service</a>
+<a class="text-on-surface/40 hover:text-primary transition-colors text-xs font-inter" href="#">Security</a>
+</div>
+<div class="text-on-surface/40 text-xs font-inter">
+                © 2024 TaskFlow Kinetic Academy. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

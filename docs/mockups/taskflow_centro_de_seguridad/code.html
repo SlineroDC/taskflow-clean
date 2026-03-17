@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#ffee57",
+              "primary-fixed": "#bcf161",
+              "on-tertiary": "#696000",
+              "primary-dim": "#aee254",
+              "tertiary-dim": "#f0e04a",
+              "tertiary-fixed": "#ffee57",
+              "on-primary-container": "#182700",
+              "surface-bright": "#1f2b48",
+              "outline-variant": "#40485c",
+              "on-tertiary-fixed": "#4c4500",
+              "on-secondary": "#515600",
+              "outline": "#6d758b",
+              "secondary-fixed-dim": "#d4dd51",
+              "on-secondary-fixed-variant": "#5b6000",
+              "primary": "#bcf161",
+              "on-surface": "#dee5ff",
+              "secondary-container": "#5d6300",
+              "on-surface-variant": "#a3abc3",
+              "error-container": "#b92902",
+              "tertiary-fixed-dim": "#f0e04a",
+              "on-primary-fixed-variant": "#436300",
+              "on-background": "#dee5ff",
+              "tertiary": "#fff9e6",
+              "secondary-fixed": "#e2eb5d",
+              "on-primary-fixed": "#2d4400",
+              "surface-container-low": "#0a1327",
+              "error": "#ff7351",
+              "surface-container-highest": "#1a253f",
+              "on-primary": "#3c5800",
+              "on-tertiary-fixed-variant": "#6b6200",
+              "on-error": "#450900",
+              "surface-variant": "#1a253f",
+              "primary-container": "#7faf25",
+              "surface-container": "#0f192f",
+              "primary-fixed-dim": "#aee254",
+              "surface-container-lowest": "#000000",
+              "on-error-container": "#ffd2c8",
+              "inverse-surface": "#faf8ff",
+              "secondary-dim": "#d4dd51",
+              "inverse-primary": "#486900",
+              "inverse-on-surface": "#4d556a",
+              "surface-dim": "#060e1f",
+              "secondary": "#e2eb5d",
+              "error-dim": "#d53d18",
+              "surface-tint": "#bcf161",
+              "surface": "#060e1f",
+              "on-secondary-container": "#f8ff90",
+              "surface-container-high": "#141f37",
+              "on-secondary-fixed": "#3f4300",
+              "on-tertiary-container": "#605800",
+              "background": "#060e1f"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(26, 37, 63, 0.6);
+            backdrop-filter: blur(16px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- SideNavBar -->
+<aside class="bg-[#0a1327] h-screen w-64 fixed left-0 top-0 overflow-y-auto shadow-[20px_0_40px_rgba(0,0,0,0.4)] flex flex-col py-8 z-50 font-headline antialiased tracking-tight">
+<div class="px-6 mb-10">
+<h1 class="text-xl font-bold text-[#98CA3F] tracking-tighter">TaskFlow</h1>
+<p class="text-on-surface-variant text-xs mt-1">Kinetic Academy</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span>Projects</span>
+</a>
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined">school</span>
+<span>Academy</span>
+</a>
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Metrics</span>
+</a>
+<!-- Active State Logic: Security fits under Settings or a sub-page of Metrics/Dashboard. Assuming Settings context for Security Center -->
+<a class="text-[#98CA3F] border-l-2 border-[#98CA3F] bg-gradient-to-r from-[#98CA3F1A] to-transparent py-3 px-6 flex items-center gap-3 active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 space-y-4">
+<button class="w-full py-3 px-4 bg-primary text-on-primary-container font-bold rounded-lg hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] hover:scale-105 transition-all">
+                New Project
+            </button>
+<div class="pt-6 border-t border-outline-variant/15 space-y-1">
+<a class="text-[#dee5ff]/40 hover:text-[#98CA3F] py-2 flex items-center gap-3 transition-colors text-sm" href="#">
+<span class="material-symbols-outlined">help</span> Help
+                </a>
+<a class="text-[#dee5ff]/40 hover:text-[#98CA3F] py-2 flex items-center gap-3 transition-colors text-sm" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-[#060e1f]/80 backdrop-blur-xl z-40 flex justify-between items-center px-8 ml-64 font-headline font-medium text-sm">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#98CA3F] uppercase tracking-widest">TaskFlow</span>
+<div class="flex items-center bg-surface-container-high rounded-full px-4 py-1.5 min-w-[300px]">
+<span class="material-symbols-outlined text-outline text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface-variant w-full placeholder:text-outline/50" placeholder="Buscar protocolos de seguridad..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-8">
+<div class="hidden lg:flex gap-6">
+<a class="text-[#dee5ff]/70 hover:text-[#98CA3F] transition-colors duration-300" href="#">Docs</a>
+<a class="text-[#dee5ff]/70 hover:text-[#98CA3F] transition-colors duration-300" href="#">Community</a>
+<a class="text-[#98CA3F] font-bold border-b-2 border-[#98CA3F] pb-1" href="#">Updates</a>
+</div>
+<div class="flex items-center gap-4 border-l border-outline-variant/30 pl-6">
+<button class="text-[#dee5ff]/70 hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile photo in security team" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfNbJ0vqBemWZ7rVtoV-TT80qQ4o_YLKk-0nf6mSE28MNeU7DrWu4r4x-5SJF9Er7RoXLgag1HDw-RSvOH3ypEnY3JgNTaQ0_K9UTjhImp7aPmS9P-ctU0877132drLNz_I_BBmhfY8J-5GSvZ1zqslWVOvdFd0SsF__U7dpdRuaILnp8sZfeECDIbNZB-PwLyocUEMM2efKfqlcgVOfQ7reVBZbido3cYkAG_Xgp2qggBdrsc3F9CMre9wLH9kB7i6kqN4R1oZ635"/>
+</div>
+</div>
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+<!-- Hero Header -->
+<section class="mb-16 max-w-4xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold tracking-widest uppercase mb-6">
+<span class="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#bcf161]"></span>
+                Security Center v4.0
+            </div>
+<h2 class="text-5xl md:text-6xl font-headline font-extrabold text-on-surface tracking-tighter leading-tight mb-4">
+                Seguridad en <span class="text-primary italic">TaskFlow</span>
+</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed">
+                Nuestra arquitectura está diseñada para el máximo rendimiento sin comprometer la integridad. Implementamos estándares de grado militar para la protección de la Kinetic Academy.
+            </p>
+</section>
+<!-- Bento Grid Logic -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<!-- Main Bento Card 1: Arquitectura Limpia -->
+<div class="md:col-span-8 group cursor-default">
+<div class="relative overflow-hidden rounded-xl bg-surface-container p-10 h-full border-l-0 group-hover:border-l-4 group-hover:border-primary transition-all duration-300 shadow-xl">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="w-full md:w-1/2">
+<div class="w-14 h-14 rounded-xl bg-surface-container-high flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-4xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">code</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-4">Arquitectura Limpia</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                                Backend robusto desarrollado en <strong class="text-primary-dim">.NET Core</strong> para garantizar la máxima integridad de los datos y escalabilidad empresarial. Seguimos patrones SOLID para una defensa en profundidad.
+                            </p>
+<ul class="space-y-3">
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="w-1 h-1 rounded-full bg-primary"></span> Middlewares de seguridad activos
+                                </li>
+<li class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="w-1 h-1 rounded-full bg-primary"></span> Validación de esquemas estricta
+                                </li>
+</ul>
+</div>
+<div class="w-full md:w-1/2 relative">
+<div class="aspect-video rounded-lg bg-surface-container-low overflow-hidden shadow-inner border border-outline-variant/10">
+<img class="w-full h-full object-cover opacity-60" data-alt="Clean code display with dark syntax highlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHTvkkZU38rcJvqx9yBHrefkttx0YuCxqH33aJ79iRgb2FFAQwoR6cmPH4VA8wossXP30WWI-i_PrjJ-jJwfMmyM3RJZmq8QA3E2OldwSzZGzYr5rm_fvxqMS3rCjoJdwTa2rTQZYoWzZY256V2y9lKsGCugaNybr4svKJdlKYhAuWBt17a-bFoMh9wAL0YuqTRf9NPxQy8BA62p8-J4gQf93jlUHMqGlx-beyPotA-VbjdMqenakT1wC1mrQFvOpGaHgThRgW3qWj"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container via-transparent to-transparent"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Card 2: Autenticación Segura -->
+<div class="md:col-span-4 group h-full">
+<div class="rounded-xl bg-surface-container p-8 h-full border-l-0 group-hover:border-l-4 group-hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">shield</span>
+</div>
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Autenticación Segura</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+                        Hashing de contraseñas criptográficas mediante <strong class="text-primary-dim">Argon2id</strong>. Nunca almacenamos texto plano, solo representaciones seguras computacionalmente costosas de romper.
+                    </p>
+<div class="mt-4 p-4 rounded bg-surface-container-lowest font-mono text-[10px] text-primary/70 border border-primary/10 overflow-hidden whitespace-nowrap">
+                        $argon2id$v=19$m=65536,t=3,p=4$OGZ...
+                    </div>
+</div>
+</div>
+<!-- Bento Card 3: Aislamiento -->
+<div class="md:col-span-4 group h-full">
+<div class="rounded-xl bg-surface-container p-8 h-full border-l-0 group-hover:border-l-4 group-hover:border-primary transition-all duration-300 shadow-xl">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">dns</span>
+</div>
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-3">Aislamiento de Proyectos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Confidencialidad absoluta por usuario. Cada proyecto reside en un contexto lógico separado, impidiendo cualquier fuga lateral de información entre nodos de la academia.
+                    </p>
+</div>
+</div>
+<!-- Stats/Extra Card (Asymmetry) -->
+<div class="md:col-span-8">
+<div class="glass-panel rounded-xl p-8 flex flex-col md:flex-row justify-around items-center gap-8 border border-outline-variant/10">
+<div class="text-center">
+<div class="text-3xl font-black text-primary">99.9%</div>
+<div class="text-xs uppercase tracking-widest text-on-surface-variant">Uptime Seguro</div>
+</div>
+<div class="w-px h-12 bg-outline-variant/30 hidden md:block"></div>
+<div class="text-center">
+<div class="text-3xl font-black text-primary">AES-256</div>
+<div class="text-xs uppercase tracking-widest text-on-surface-variant">Encryption Standard</div>
+</div>
+<div class="w-px h-12 bg-outline-variant/30 hidden md:block"></div>
+<div class="text-center">
+<div class="text-3xl font-black text-primary">ZERO</div>
+<div class="text-xs uppercase tracking-widest text-on-surface-variant">Trust Protocol</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#060e1f] w-full py-12 border-t border-[#40485c]/15 mt-20 relative z-10">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8 font-inter text-xs text-[#dee5ff]/40">
+<div class="flex items-center gap-6 mb-8 md:mb-0">
+<span class="text-[#98CA3F] font-bold text-lg tracking-tighter">TaskFlow</span>
+<p>© 2024 TaskFlow Kinetic Academy. All rights reserved.</p>
+</div>
+<nav class="flex gap-8 items-center">
+<a class="hover:text-[#98CA3F] transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-[#98CA3F] transition-colors" href="#">Terms of Service</a>
+<a class="text-[#98CA3F]" href="#">Security</a>
+<div class="flex gap-4 ml-8 opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="material-symbols-outlined text-sm">verified_user</span>
+</div>
+</nav>
+</div>
+</footer>
+</body></html>

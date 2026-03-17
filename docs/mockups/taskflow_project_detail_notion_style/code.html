@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow - Project Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#6d758b",
+                        "tertiary-dim": "#f0e04a",
+                        "background": "#060e1f",
+                        "surface-bright": "#1f2b48",
+                        "error-container": "#b92902",
+                        "on-background": "#dee5ff",
+                        "on-secondary-container": "#f8ff90",
+                        "surface-container-high": "#141f37",
+                        "inverse-primary": "#486900",
+                        "secondary-fixed-dim": "#d4dd51",
+                        "primary-fixed": "#bcf161",
+                        "on-primary-fixed": "#2d4400",
+                        "secondary": "#e2eb5d",
+                        "on-primary-fixed-variant": "#436300",
+                        "tertiary": "#fff9e6",
+                        "on-primary-container": "#182700",
+                        "inverse-surface": "#faf8ff",
+                        "error": "#ff7351",
+                        "surface": "#060e1f",
+                        "on-secondary-fixed-variant": "#5b6000",
+                        "surface-container-highest": "#1a253f",
+                        "on-error": "#450900",
+                        "on-tertiary-fixed-variant": "#6b6200",
+                        "on-secondary": "#515600",
+                        "surface-container-low": "#0a1327",
+                        "primary": "#bcf161",
+                        "on-tertiary-container": "#605800",
+                        "on-surface-variant": "#a3abc3",
+                        "error-dim": "#d53d18",
+                        "secondary-fixed": "#e2eb5d",
+                        "primary-dim": "#aee254",
+                        "inverse-on-surface": "#4d556a",
+                        "secondary-dim": "#d4dd51",
+                        "surface-tint": "#bcf161",
+                        "on-surface": "#dee5ff",
+                        "on-tertiary": "#696000",
+                        "tertiary-container": "#ffee57",
+                        "primary-fixed-dim": "#aee254",
+                        "secondary-container": "#5d6300",
+                        "surface-dim": "#060e1f",
+                        "tertiary-fixed": "#ffee57",
+                        "on-tertiary-fixed": "#4c4500",
+                        "surface-variant": "#1a253f",
+                        "on-primary": "#3c5800",
+                        "surface-container-lowest": "#000000",
+                        "on-error-container": "#ffd2c8",
+                        "surface-container": "#0f192f",
+                        "tertiary-fixed-dim": "#f0e04a",
+                        "outline-variant": "#40485c",
+                        "primary-container": "#7faf25",
+                        "on-secondary-fixed": "#3f4300"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .task-checkbox:checked + .checkbox-custom {
+            background-color: #bcf161;
+            border-color: #bcf161;
+        }
+        .task-checkbox:checked + .checkbox-custom::after {
+            content: 'check';
+            font-family: 'Material Symbols Outlined';
+            font-size: 14px;
+            color: #182700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 antialiased">
+<!-- SideNavBar Shell -->
+<aside class="bg-[#0a1327] font-headline antialiased tracking-tight h-screen w-64 fixed left-0 top-0 overflow-y-auto shadow-[20px_0_40px_rgba(0,0,0,0.4)] flex flex-col py-8 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-xl font-bold text-[#98CA3F] tracking-tighter">TaskFlow</h1>
+<p class="text-xs text-on-surface-variant font-medium">Kinetic Academy</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 group active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-[#98CA3F] border-l-2 border-[#98CA3F] bg-gradient-to-r from-[#98CA3F1A] to-transparent py-3 px-6 flex items-center gap-3 group active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="folder_open">folder_open</span>
+                Projects
+            </a>
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 group active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="school">school</span>
+                Academy
+            </a>
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 group active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="bar_chart">bar_chart</span>
+                Metrics
+            </a>
+<a class="text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-colors flex items-center gap-3 hover:bg-[#1a253f]/50 group active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto px-6 space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                New Project
+            </button>
+<div class="pt-6 space-y-1">
+<a class="text-[#dee5ff]/40 hover:text-[#98CA3F] py-2 flex items-center gap-3 transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+                    Help
+                </a>
+<a class="text-[#dee5ff]/40 hover:text-[#98CA3F] py-2 flex items-center gap-3 transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-[#060e1f]/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 ml-64">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary focus:bg-surface-container-highest transition-all outline-none" placeholder="Search tasks..." type="text"/>
+</div>
+<nav class="hidden lg:flex items-center gap-6 ml-8 font-headline font-medium text-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Community</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Updates</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="User profile avatar showing professional male" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHfH4NI9OpyY9KdnFH9fp-1UTkIEEyFUGD7KaZRT9b1s1ckj_SHAIQm87J0ZxZL4bTLLu2ZO3wOXIviyO-NsVKG9kfoV0n5I_RZ1uGYjmgprdfKtfmQR3e0PJvEsP2B2eg4dpmeqFiNyXuF1Pk2gqVooSjAyLTBndb-kRA6CHBX3xHcJBK4v-rxNm8D-Ib6ZzGhCjB8Ia-QisrwdOWQ3lv8nE0JVY3DiYrljM8Ky_n-ZNSlZFCHGukrlOEXp4jurtpAXX3FqNltYxv"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 pb-12 px-8 min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Project Header -->
+<section class="mb-12 flex flex-col md:flex-row justify-between items-start gap-6">
+<div class="space-y-2">
+<div class="flex items-center gap-3 mb-1">
+<span class="bg-primary/20 text-primary text-[10px] font-bold px-2 py-0.5 rounded tracking-widest uppercase">Active Project</span>
+<div class="flex -space-x-2">
+<img alt="Member" class="w-6 h-6 rounded-full border-2 border-surface" data-alt="Team member small avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRE92SQCNNmZJu4zODglTtkM78xARgQ7Ydg70wMMXdqIpWFt-SqMxfO5VDpUNyvVvCfLJy7zs4r6KIigGkN-yP4vdE5UuhPfHY4LbpqwvIHmZLI5Ji2cHEQ-9FwjunJbST3nFBR4M-Dzlqs4XzFB_DueYL0ODEYX96asA8ZdgFoYCkIXD5P8RS4EIL7o3hzyKzxP0bO-qPu8HRJJRJeG4YfAHO0fIcGRjQJEwPiCohoigtfV0Sop1NeiMvlFQny1IHuZgPKd47jsPs"/>
+<img alt="Member" class="w-6 h-6 rounded-full border-2 border-surface" data-alt="Team member small avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD51uJus9yG5OxfxFHRS0eaoF8rJKxuU2VyG6mVmTu3QlYyDu0a3eUbRtptOzb1EOFGQJWhLxAYcvKo9olPyxTzJ7zc9qIpvMGof752Nwce424ibZd4RCLNWBYcB2dl5qw_9AECr27z3WBs6GLqrXV0I1v_Me74urGR8ayDsIY63RjkyhPFlGaG3ja9_qFkEbupvZwKWR0hH1TUVURnCab1rK5lWVR9HbCpu5WqQgrk-WBATTDHLKTDDRSSmL4ruXspefju-RCLI2QT"/>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-surface flex items-center justify-center text-[8px] font-bold">+4</div>
+</div>
+</div>
+<h2 class="text-4xl font-headline font-extrabold tracking-tight text-on-surface">Rediseño Interfaz Kinética</h2>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed">Implementación del nuevo sistema de diseño editorial para la plataforma educativa. Enfoque en accesibilidad y performance visual.</p>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-5 py-2.5 rounded-lg font-headline font-bold text-sm transition-all flex items-center gap-2 border border-outline-variant/15 active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+                        Editar Proyecto
+                    </button>
+<button class="bg-primary text-on-primary-container px-5 py-2.5 rounded-lg font-headline font-bold text-sm transition-all hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] hover:scale-105 active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="check_circle">check_circle</span>
+                        Completar Proyecto
+                    </button>
+</div>
+</section>
+<!-- Summary Section (Asymmetric Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-surface-container p-6 rounded-xl border-l-4 border-primary/40 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Total Tareas</p>
+<h3 class="text-4xl font-headline font-black text-on-surface">24</h3>
+<div class="mt-4 w-full h-1 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full shadow-[0_0_8px_rgba(188,241,97,0.5)]"></div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-7xl opacity-5 text-on-surface" data-icon="task">task</span>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border-l-4 border-tertiary-dim/40 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Pendientes</p>
+<h3 class="text-4xl font-headline font-black text-on-surface">09</h3>
+<div class="mt-4 w-full h-1 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-dim w-[37.5%]"></div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-7xl opacity-5 text-on-surface" data-icon="pending_actions">pending_actions</span>
+</div>
+<div class="bg-surface-container p-6 rounded-xl border-l-4 border-secondary/40 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Completadas</p>
+<h3 class="text-4xl font-headline font-black text-on-surface">15</h3>
+<div class="mt-4 w-full h-1 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[62.5%]"></div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-7xl opacity-5 text-on-surface" data-icon="check_circle">check_circle</span>
+</div>
+</section>
+<!-- Task List Section -->
+<section class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/10 shadow-xl">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h4 class="font-headline font-bold text-lg">Lista de Tareas</h4>
+<div class="flex items-center gap-4 text-xs font-bold text-on-surface-variant">
+<span>PRIORITY</span>
+<span class="ml-16">STATUS</span>
+</div>
+</div>
+<div class="divide-y divide-outline-variant/5">
+<!-- Task Row 1 -->
+<div class="flex items-center gap-4 px-6 py-4 hover:bg-surface-container-high/50 transition-all group">
+<span class="material-symbols-outlined text-outline-variant/40 cursor-grab active:cursor-grabbing hover:text-primary transition-colors" data-icon="drag_indicator">drag_indicator</span>
+<div class="relative flex items-center justify-center w-6 h-6 shrink-0">
+<input class="task-checkbox absolute opacity-0 w-full h-full cursor-pointer z-10" type="checkbox"/>
+<div class="checkbox-custom w-5 h-5 rounded-full border-2 border-outline-variant transition-all"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-sm font-medium text-on-surface truncate group-hover:text-primary transition-colors">Definición de tokens de color para modo oscuro</h5>
+</div>
+<div class="flex items-center gap-8 shrink-0">
+<div class="w-24 flex justify-end">
+<span class="bg-error/10 text-error text-[10px] font-bold px-2 py-1 rounded border border-error/20 flex items-center gap-1.5 uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                    High
+                                </span>
+</div>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Task Row 2 -->
+<div class="flex items-center gap-4 px-6 py-4 hover:bg-surface-container-high/50 transition-all group">
+<span class="material-symbols-outlined text-outline-variant/40 cursor-grab transition-colors" data-icon="drag_indicator">drag_indicator</span>
+<div class="relative flex items-center justify-center w-6 h-6 shrink-0">
+<input class="task-checkbox absolute opacity-0 w-full h-full cursor-pointer z-10" type="checkbox"/>
+<div class="checkbox-custom w-5 h-5 rounded-full border-2 border-outline-variant transition-all"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-sm font-medium text-on-surface truncate">Maquetación de la rejilla Bento para el Dashboard</h5>
+</div>
+<div class="flex items-center gap-8 shrink-0">
+<div class="w-24 flex justify-end">
+<span class="bg-orange-500/10 text-orange-500 text-[10px] font-bold px-2 py-1 rounded border border-orange-500/20 flex items-center gap-1.5 uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                                    Medium
+                                </span>
+</div>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Task Row 3 (Checked) -->
+<div class="flex items-center gap-4 px-6 py-4 hover:bg-surface-container-high/50 transition-all group opacity-60">
+<span class="material-symbols-outlined text-outline-variant/20 cursor-grab" data-icon="drag_indicator">drag_indicator</span>
+<div class="relative flex items-center justify-center w-6 h-6 shrink-0">
+<input checked="" class="task-checkbox absolute opacity-0 w-full h-full cursor-pointer z-10" type="checkbox"/>
+<div class="checkbox-custom w-5 h-5 rounded-full border-2 border-primary transition-all"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-sm font-medium text-on-surface truncate line-through decoration-primary/50">Investigación de tipografías variables Manrope e Inter</h5>
+</div>
+<div class="flex items-center gap-8 shrink-0">
+<div class="w-24 flex justify-end">
+<span class="bg-yellow-400/10 text-yellow-400 text-[10px] font-bold px-2 py-1 rounded border border-yellow-400/20 flex items-center gap-1.5 uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
+                                    Low
+                                </span>
+</div>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Task Row 4 -->
+<div class="flex items-center gap-4 px-6 py-4 hover:bg-surface-container-high/50 transition-all group">
+<span class="material-symbols-outlined text-outline-variant/40 cursor-grab transition-colors" data-icon="drag_indicator">drag_indicator</span>
+<div class="relative flex items-center justify-center w-6 h-6 shrink-0">
+<input class="task-checkbox absolute opacity-0 w-full h-full cursor-pointer z-10" type="checkbox"/>
+<div class="checkbox-custom w-5 h-5 rounded-full border-2 border-outline-variant transition-all"></div>
+</div>
+<div class="flex-1 min-w-0">
+<h5 class="text-sm font-medium text-on-surface truncate">Optimización de assets y carga de imágenes dinámicas</h5>
+</div>
+<div class="flex items-center gap-8 shrink-0">
+<div class="w-24 flex justify-end">
+<span class="bg-orange-500/10 text-orange-500 text-[10px] font-bold px-2 py-1 rounded border border-orange-500/20 flex items-center gap-1.5 uppercase tracking-tighter">
+<span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                                    Medium
+                                </span>
+</div>
+<button class="p-1 hover:bg-surface-container-highest rounded transition-colors text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-4 bg-surface-container-high/30 border-t border-outline-variant/5">
+<button class="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-dashed border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all text-sm font-bold">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                        Añadir nueva tarea a este proyecto
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="ml-64 bg-[#060e1f] w-full py-12 border-t border-[#40485c]/15">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-8">
+<div class="mb-6 md:mb-0">
+<span class="text-[#98CA3F] font-bold">TaskFlow</span>
+<p class="font-inter text-xs text-[#dee5ff]/40 mt-1">© 2024 TaskFlow Kinetic Academy. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-inter text-xs text-[#dee5ff]/40 hover:text-[#98CA3F] transition-colors uppercase tracking-widest" href="#">Privacy Policy</a>
+<a class="font-inter text-xs text-[#dee5ff]/40 hover:text-[#98CA3F] transition-colors uppercase tracking-widest" href="#">Terms of Service</a>
+<a class="font-inter text-xs text-[#dee5ff]/40 hover:text-[#98CA3F] transition-colors uppercase tracking-widest" href="#">Security</a>
+</div>
+</div>
+</footer>
+</body></html>

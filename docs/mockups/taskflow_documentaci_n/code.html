@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow Academy | Documentación</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "tertiary-container": "#ffee57",
+                "primary-fixed": "#bcf161",
+                "on-tertiary": "#696000",
+                "primary-dim": "#aee254",
+                "tertiary-dim": "#f0e04a",
+                "tertiary-fixed": "#ffee57",
+                "on-primary-container": "#182700",
+                "surface-bright": "#1f2b48",
+                "outline-variant": "#40485c",
+                "on-tertiary-fixed": "#4c4500",
+                "on-secondary": "#515600",
+                "outline": "#6d758b",
+                "secondary-fixed-dim": "#d4dd51",
+                "on-secondary-fixed-variant": "#5b6000",
+                "primary": "#bcf161",
+                "on-surface": "#dee5ff",
+                "secondary-container": "#5d6300",
+                "on-surface-variant": "#a3abc3",
+                "error-container": "#b92902",
+                "tertiary-fixed-dim": "#f0e04a",
+                "on-primary-fixed-variant": "#436300",
+                "on-background": "#dee5ff",
+                "tertiary": "#fff9e6",
+                "secondary-fixed": "#e2eb5d",
+                "on-primary-fixed": "#2d4400",
+                "surface-container-low": "#0a1327",
+                "error": "#ff7351",
+                "surface-container-highest": "#1a253f",
+                "on-primary": "#3c5800",
+                "on-tertiary-fixed-variant": "#6b6200",
+                "on-error": "#450900",
+                "surface-variant": "#1a253f",
+                "primary-container": "#7faf25",
+                "surface-container": "#0f192f",
+                "primary-fixed-dim": "#aee254",
+                "surface-container-lowest": "#000000",
+                "on-error-container": "#ffd2c8",
+                "inverse-surface": "#faf8ff",
+                "secondary-dim": "#d4dd51",
+                "inverse-primary": "#486900",
+                "inverse-on-surface": "#4d556a",
+                "surface-dim": "#060e1f",
+                "secondary": "#e2eb5d",
+                "error-dim": "#d53d18",
+                "surface-tint": "#bcf161",
+                "surface": "#060e1f",
+                "on-secondary-container": "#f8ff90",
+                "surface-container-high": "#141f37",
+                "on-secondary-fixed": "#3f4300",
+                "on-tertiary-container": "#605800",
+                "background": "#060e1f"
+              },
+              fontFamily: {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"],
+                "mono": ["JetBrains Mono"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #060e1f;
+            color: #dee5ff;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #060e1f; }
+        ::-webkit-scrollbar-thumb { background: #1a253f; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #40485c; }
+    </style>
+</head>
+<body class="font-body selection:bg-primary/30 selection:text-primary">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-[#0a1327] shadow-[20px_0_40px_rgba(0,0,0,0.4)] flex flex-col py-8 z-50 font-headline antialiased tracking-tight">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-lg" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-[#98CA3F] tracking-tighter">TaskFlow</h1>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Kinetic Academy</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-all duration-200 hover:bg-[#1a253f]/50" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-all duration-200 hover:bg-[#1a253f]/50" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="text-sm font-medium">Projects</span>
+</a>
+<a class="flex items-center gap-3 text-[#98CA3F] border-l-2 border-[#98CA3F] bg-gradient-to-r from-[#98CA3F1A] to-transparent py-3 px-6 active:scale-95 transform transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="text-sm font-bold">Academy</span>
+</a>
+<a class="flex items-center gap-3 text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-all duration-200 hover:bg-[#1a253f]/50" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="text-sm font-medium">Metrics</span>
+</a>
+<a class="flex items-center gap-3 text-[#dee5ff]/60 hover:text-[#dee5ff] py-3 px-6 transition-all duration-200 hover:bg-[#1a253f]/50" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-6 pt-6 border-t border-outline-variant/10 space-y-4">
+<a class="flex items-center gap-3 text-[#dee5ff]/40 hover:text-[#98CA3F] transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-base" data-icon="help">help</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-3 text-[#dee5ff]/40 hover:text-error transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-[#060e1f]/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 font-headline font-medium text-sm border-b border-outline-variant/10">
+<div class="flex items-center gap-8">
+<div class="relative group">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</span>
+<input class="bg-surface-container-high text-on-surface border-none rounded-full py-2 pl-10 pr-4 w-64 text-xs focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Buscar en la academia..." type="text"/>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#dee5ff]/70 hover:text-[#98CA3F] transition-colors duration-300" href="#">Docs</a>
+<a class="text-[#dee5ff]/70 hover:text-[#98CA3F] transition-colors duration-300" href="#">Community</a>
+<a class="text-[#dee5ff]/70 hover:text-[#98CA3F] transition-colors duration-300" href="#">Updates</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-all p-2 rounded-full hover:bg-surface-container-highest">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="bg-primary text-on-primary-container px-4 py-2 rounded-lg font-bold hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(152,202,63,0.3)]">
+                + New Project
+            </button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Close up of a professional male user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9Yh3g0RFIQ3yKIBMpJ7fdrkrXY3UPUwmMaAPV53IoZxzDfygLaX2vDq6-94xLhsSzd7KQsJ8_MwLgoGvFUr4wYtK17Ki2h5FwyLN7ivnaCBRgG4JuOmCs2HOi-fxa4lVY2pHuGJB5f-UOxx3UbmBmjj-dJ-RNK16JweJVOypafK3WpVpLzMZ0SKLMGl0czAF_YH3PQJIPsU9X5r8sjm__w3gjZUyC627ri5Rid3fNd0KdCwX03wM4I2tFoaZVo3cbMHMBszETIk0a"/>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="ml-64 pt-16 min-h-screen flex flex-row relative">
+<!-- Local Sub-Navigation (Documentation Topics) -->
+<nav class="w-72 h-[calc(100vh-4rem)] sticky top-16 bg-surface-dim border-r border-outline-variant/5 py-10 px-8 overflow-y-auto">
+<p class="text-[10px] font-extrabold uppercase tracking-widest text-primary mb-6">Guía de Inicio</p>
+<ul class="space-y-4 mb-10">
+<li><a class="text-primary font-bold block transition-colors" href="#">Instalación</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface block transition-colors" href="#">Crear un Proyecto</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface block transition-colors" href="#">Gestión de Tareas</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface block transition-colors" href="#">Reordenamiento</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface block transition-colors" href="#">Reglas de Negocio</a></li>
+</ul>
+<p class="text-[10px] font-extrabold uppercase tracking-widest text-on-surface-variant/40 mb-6">Avanzado</p>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-on-surface block transition-colors" href="#">API de Kinetic</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface block transition-colors" href="#">Webhooks</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface block transition-colors" href="#">Integraciones</a></li>
+</ul>
+</nav>
+<!-- Content Canvas -->
+<article class="flex-1 max-w-4xl mx-auto px-12 py-16">
+<header class="mb-12">
+<nav class="flex gap-2 text-xs font-medium text-on-surface-variant mb-4">
+<span>Academy</span>
+<span>/</span>
+<span>Documentación</span>
+<span>/</span>
+<span class="text-primary">Cómo usar TaskFlow</span>
+</nav>
+<h1 class="text-5xl font-black font-headline text-on-surface tracking-tight leading-tight">
+                    Cómo usar <span class="text-primary">TaskFlow</span>
+</h1>
+<p class="mt-6 text-xl text-on-surface-variant leading-relaxed">
+                    Aprende los fundamentos para dominar el flujo cinético de tus proyectos. Desde la configuración inicial hasta la automatización de flujos complejos.
+                </p>
+</header>
+<section class="space-y-16">
+<!-- Introduction Section -->
+<div class="group">
+<h2 class="text-2xl font-bold font-headline text-on-surface mb-6 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-primary"></span>
+                        Instalación Rápida
+                    </h2>
+<p class="text-on-surface-variant leading-relaxed mb-8">
+                        Para comenzar, asegúrate de tener el entorno de Kinetic configurado. Utiliza nuestro CLI oficial para generar el boilerplate necesario en segundos.
+                    </p>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden shadow-2xl">
+<div class="bg-surface-container-high px-4 py-2 flex items-center justify-between border-b border-outline-variant/10">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary-container/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary/40"></div>
+</div>
+<span class="text-[10px] font-mono text-on-surface-variant/50">bash — taskflow-init</span>
+</div>
+<div class="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
+<div class="flex">
+<span class="text-primary mr-4 select-none">1</span>
+<span class="text-on-surface"><span class="text-secondary">npm</span> install @taskflow/kinetic-cli -g</span>
+</div>
+<div class="flex">
+<span class="text-primary/40 mr-4 select-none">2</span>
+<span class="text-on-surface-variant"># Inicializa tu primer proyecto</span>
+</div>
+<div class="flex">
+<span class="text-primary mr-4 select-none">3</span>
+<span class="text-on-surface"><span class="text-primary-fixed">taskflow</span> init my-kinetic-project</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Feature Section -->
+<div class="group">
+<h2 class="text-2xl font-bold font-headline text-on-surface mb-6 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-primary"></span>
+                        Gestión de Tareas
+                    </h2>
+<p class="text-on-surface-variant leading-relaxed mb-8">
+                        La interfaz de TaskFlow está diseñada para reducir la fricción cognitiva. Cada tarjeta de tarea contiene metadatos enriquecidos que se actualizan en tiempo real mediante nuestro motor de sincronización.
+                    </p>
+<!-- Simulated App Screenshot -->
+<div class="relative rounded-2xl p-4 bg-surface-container border border-primary/20 shadow-[0_0_50px_rgba(188,241,97,0.05)] aspect-video flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(188,241,97,0.1),transparent)] pointer-events-none"></div>
+<div class="w-full h-full bg-surface-container-low rounded-lg border border-outline-variant/20 flex p-6 gap-6">
+<!-- Column 1 -->
+<div class="w-1/3 h-full bg-surface-dim/50 rounded-lg p-4 space-y-3">
+<div class="h-3 w-16 bg-primary/20 rounded-full mb-4"></div>
+<div class="h-24 w-full bg-surface-container-highest/50 rounded-lg border-l-4 border-primary"></div>
+<div class="h-24 w-full bg-surface-container-highest/50 rounded-lg"></div>
+</div>
+<!-- Column 2 -->
+<div class="w-1/3 h-full bg-surface-dim/50 rounded-lg p-4 space-y-3">
+<div class="h-3 w-16 bg-secondary/20 rounded-full mb-4"></div>
+<div class="h-24 w-full bg-surface-container-highest/50 rounded-lg"></div>
+<div class="h-24 w-full bg-surface-container-highest/50 rounded-lg"></div>
+</div>
+<!-- Column 3 -->
+<div class="w-1/3 h-full bg-surface-dim/50 rounded-lg p-4 space-y-3">
+<div class="h-3 w-16 bg-error/20 rounded-full mb-4"></div>
+<div class="h-24 w-full bg-surface-container-highest/50 rounded-lg"></div>
+</div>
+</div>
+<div class="absolute bottom-10 right-10 bg-primary px-4 py-2 rounded-full text-on-primary-container font-bold text-xs shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">mouse</span>
+                            Interacción Drag &amp; Drop
+                        </div>
+</div>
+</div>
+<!-- Rules Section -->
+<div class="group">
+<h2 class="text-2xl font-bold font-headline text-on-surface mb-6 flex items-center gap-3">
+<span class="w-8 h-[2px] bg-primary"></span>
+                        Reglas de Negocio Automatizadas
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-high/40 p-8 rounded-2xl border border-outline-variant/10 hover:border-primary/20 transition-all duration-300">
+<div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="auto_fix">auto_fix</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-2">Auto-Asignación</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Configura triggers que asignen tareas basadas en la carga de trabajo actual del equipo.</p>
+</div>
+<div class="bg-surface-container-high/40 p-8 rounded-2xl border border-outline-variant/10 hover:border-primary/20 transition-all duration-300">
+<div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="event_repeat">event_repeat</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-2">Ciclos Dinámicos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Define flujos que se adapten al estado del proyecto de forma inteligente.</p>
+</div>
+</div>
+</div>
+<!-- Feedback Section -->
+<div class="mt-24 pt-12 border-t border-outline-variant/10 flex flex-col items-center justify-center text-center">
+<h4 class="text-lg font-bold text-on-surface mb-2">¿Fue útil esta sección?</h4>
+<p class="text-on-surface-variant text-sm mb-6">Tu feedback nos ayuda a mejorar la Kinetic Academy.</p>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-3 rounded-full border border-outline-variant/20 hover:border-primary hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="thumb_up">thumb_up</span>
+<span class="font-bold text-sm">Sí, gracias</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-full border border-outline-variant/20 hover:border-error hover:text-error transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="thumb_down">thumb_down</span>
+<span class="font-bold text-sm">No del todo</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Footer Component -->
+<footer class="mt-32 w-full py-12 border-t border-[#40485c]/15">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-0">
+<div class="mb-4 md:mb-0">
+<p class="font-inter text-xs text-[#dee5ff]/40">
+                            © 2024 <span class="text-[#98CA3F] font-bold">TaskFlow Kinetic Academy</span>. All rights reserved.
+                        </p>
+</div>
+<div class="flex gap-8">
+<a class="text-[#dee5ff]/40 hover:text-[#98CA3F] transition-colors text-xs" href="#">Privacy Policy</a>
+<a class="text-[#dee5ff]/40 hover:text-[#98CA3F] transition-colors text-xs" href="#">Terms of Service</a>
+<a class="text-[#dee5ff]/40 hover:text-[#98CA3F] transition-colors text-xs" href="#">Security</a>
+</div>
+</div>
+</footer>
+</article>
+<!-- Right Side: Secondary Info/On this page -->
+<aside class="hidden xl:block w-64 h-[calc(100vh-4rem)] sticky top-16 py-10 pr-8 pl-4">
+<h5 class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/40 mb-6">En esta página</h5>
+<ul class="space-y-3 text-xs">
+<li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#">Introducción</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#">Instalación Rápida</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#">Gestión de Tareas</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#">Reglas de Negocio</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#">Feedback</a></li>
+</ul>
+<div class="mt-12 bg-primary/5 rounded-xl p-6 border border-primary/10">
+<span class="material-symbols-outlined text-primary mb-3" data-icon="lightbulb" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<p class="text-xs font-bold text-on-surface mb-2">Pro Tip:</p>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">Puedes usar <kbd class="bg-surface-container-highest px-1.5 py-0.5 rounded border border-outline-variant/20 text-on-surface">CMD + K</kbd> para abrir el buscador rápido desde cualquier lugar.</p>
+</div>
+</aside>
+</main>
+</body></html>
