@@ -1,26 +1,83 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using TaskFlow.Application.DTOs;
+using TaskFlow.Application.Interfaces;
+using TaskFlow.Domain.Exceptions;
 
 namespace TaskFlow.WebMvc.Controllers;
 
 public class AuthController : Controller
 {
-    // GET: /Auth/Login
-    public IActionResult Login()
+    private readonly IAuthService _authService;
+
+    public AuthController(IAuthService authService)
     {
-        return View();
+        _authService = authService;
     }
 
-    // POST: /Auth/Login (Simulación para entrar al dashboard)
+    [HttpGet]
+    public IActionResult Login() => View();
+
     [HttpPost]
-    public IActionResult Login(string email, string password)
+    public async Task<IActionResult> Login(LoginDto dto)
     {
-        // Por ahora, cualquier login nos lleva al dashboard simulado
-        return RedirectToAction("Index", "Projects");
+        try
+        {
+            var user = await _authService.LoginAsync(dto);
+
+            // Crear los "Claims" (Datos que guardaremos en la Cookie)
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.FullName),
+                new Claim(ClaimTypes.Email, user.Email),
+            };
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims,
+                CookieAuthenticationDefaults.AuthenticationScheme
+            );
+
+            // Iniciar sesión en .NET (Genera la Cookie)
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity)
+            );
+
+            return RedirectToAction("Index", "Projects");
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+            return View();
+        }
     }
 
-    // GET: /Auth/Register
-    public IActionResult Register()
+    [HttpGet]
+    public IActionResult Register() => View();
+
+    [HttpPost]
+    public async Task<IActionResult> Register(RegisterDto dto)
     {
-        return View();
+        try
+        {
+            await _authService.RegisterAsync(dto);
+            TempData["SuccessMessage"] = "Cuenta creada con éxito. Ahora puedes iniciar sesión.";
+            return RedirectToAction(nameof(Login));
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+            return View();
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Index", "Home");
     }
 }

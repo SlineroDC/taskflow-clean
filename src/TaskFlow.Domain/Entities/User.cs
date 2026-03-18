@@ -1,3 +1,5 @@
+using TaskFlow.Domain.Exceptions;
+
 namespace TaskFlow.Domain.Entities;
 
 public class User
@@ -19,5 +21,15 @@ public class User
         FullName = fullName;
         Email = email;
         PasswordHash = passwordHash;
+    }
+
+    public void UpdatePassword(string newPasswordHash)
+    {
+        if (string.IsNullOrWhiteSpace(newPasswordHash))
+        {
+            throw new DomainException("El hash de la contraseña no puede estar vacío.");
+        }
+
+        PasswordHash = newPasswordHash;
     }
 }

@@ -17,8 +17,6 @@ namespace TaskFlow.WebMvc.Views.Shared
             _logger = logger;
         }
 
-        public void OnGet()
-        {
-        }
+        public void OnGet() { }
     }
 }
