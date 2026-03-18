@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Documentación";
+    Layout = "_PublicLayout";
+    ViewData["BodyClass"] = "bg-background text-on-background font-body selection:bg-primary selection:text-on-primary-container overflow-x-hidden relative";
+}
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#060e1f]/90 backdrop-blur-xl flex justify-between items-center h-16 px-8 border-b border-outline-variant/15 transition-all">
+    <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-primary">menu_book</span>
+        <span class="text-lg font-bold text-on-surface">Docs</span>
+    </div>
+    <a asp-controller="Home" asp-action="Index" class="text-sm font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        Volver
+    </a>
+</nav>
+
+<main class="relative pt-24 pb-16 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-4 gap-12">
+    <aside class="lg:col-span-1 hidden lg:block border-r border-outline-variant/10 pr-6 h-[calc(100vh-8rem)] sticky top-24 overflow-y-auto custom-scrollbar">
+        <h5 class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/40 mb-6">En esta página</h5>
+        <ul class="space-y-3 text-xs">
+            <li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#intro">Introducción</a></li>
+            <li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#installation">Instalación Rápida</a></li>
+            <li><a class="text-on-surface-variant hover:text-primary transition-all block border-l border-outline-variant/10 pl-4 py-1" href="#rules">Reglas de Negocio</a></li>
+        </ul>
+        
+        <div class="mt-12 bg-primary/5 rounded-xl p-6 border border-primary/10">
+            <span class="material-symbols-outlined text-primary mb-3">lightbulb</span>
+            <p class="text-xs font-bold text-on-surface mb-2">Pro Tip:</p>
+            <p class="text-xs text-on-surface-variant leading-relaxed">Usa el comando `dotnet run` desde la carpeta WebMvc para iniciar el servidor de desarrollo instantáneamente.</p>
+        </div>
+    </aside>
+
+    <div class="lg:col-span-3 prose prose-invert prose-slate max-w-none">
+        <header class="mb-12 border-b border-outline-variant/10 pb-8">
+            <h1 class="font-headline text-4xl font-extrabold text-on-surface mb-4">Manual de Usuario TaskFlow</h1>
+            <p class="text-on-surface-variant text-lg">Guía técnica y de usuario para dominar la plataforma de gestión de proyectos.</p>
+        </header>
+
+        <section id="intro" class="mb-16">
+            <h2 class="text-2xl font-headline font-bold text-primary mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined">api</span> Introducción
+            </h2>
+            <p class="text-on-surface-variant leading-relaxed">TaskFlow es una herramienta desarrollada aplicando Clean Architecture en .NET. Separa el dominio, la aplicación y la infraestructura para garantizar un código mantenible y escalable. Su interfaz está construida con Tailwind CSS y Razor Views.</p>
+        </section>
+
+        <section id="rules" class="mb-16">
+            <h2 class="text-2xl font-headline font-bold text-primary mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined">rule_folder</span> Reglas de Negocio (Core)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                <div class="bg-surface-container p-5 rounded-lg border border-outline-variant/10">
+                    <span class="material-symbols-outlined text-tertiary-dim mb-2 block">warning</span>
+                    <h4 class="font-bold text-sm mb-1 text-on-surface">Activación de Proyectos</h4>
+                    <p class="text-xs text-on-surface-variant">Un proyecto en estado 'Draft' no puede activarse a menos que tenga al menos una tarea asociada en el backlog.</p>
+                </div>
+                <div class="bg-surface-container p-5 rounded-lg border border-outline-variant/10">
+                    <span class="material-symbols-outlined text-primary mb-2 block">check_circle</span>
+                    <h4 class="font-bold text-sm mb-1 text-on-surface">Completar Proyecto</h4>
+                    <p class="text-xs text-on-surface-variant">No es posible marcar un proyecto como completado si aún existen tareas en estado pendiente.</p>
+                </div>
+            </div>
+            
+            <div class="bg-surface-container-high rounded-lg p-6 mt-8 font-mono text-sm border border-outline-variant/20 shadow-inner">
+                <div class="flex items-center gap-2 mb-4 border-b border-outline-variant/10 pb-2">
+                    <span class="w-3 h-3 rounded-full bg-error"></span>
+                    <span class="w-3 h-3 rounded-full bg-tertiary-dim"></span>
+                    <span class="w-3 h-3 rounded-full bg-primary"></span>
+                    <span class="text-xs text-outline-variant ml-2">Ejemplo de Reordenamiento Seguro</span>
+                </div>
+                <pre class="text-primary/90 overflow-x-auto"><code>// El reordenamiento (Drag & Drop) garantiza que no haya duplicados
+public async Task ReorderTaskAsync(Guid taskId, int newOrder)
+{
+    // Lógica transaccional para desplazar elementos (Shift)
+    // ...
+    await _repository.SaveChangesAsync();
+}</code></pre>
+            </div>
+        </section>
+    </div>
+</main>

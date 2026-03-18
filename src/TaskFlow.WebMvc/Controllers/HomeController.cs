@@ -1,24 +1,20 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TaskFlow.WebMvc.Models;
 
 namespace TaskFlow.WebMvc.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    public IActionResult Index() => View();
+
+    public IActionResult Error(int statusCode)
     {
+        ViewBag.StatusCode = statusCode;
         return View();
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+    public IActionResult Terms() => View();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+    public IActionResult Security() => View();
+
+    public IActionResult Docs() => View();
 }

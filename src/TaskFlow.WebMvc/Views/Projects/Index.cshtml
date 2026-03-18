@@ -1,0 +1,65 @@
+@model IEnumerable<TaskFlow.Application.DTOs.ProjectDto>
+@{
+    ViewData["Title"] = "Mis Proyectos";
+}
+
+<div class="mb-6 flex items-center justify-between">
+    <h1 class="text-3xl font-bold text-white">Dashboard - Mis Proyectos</h1>
+    
+    <div class="flex items-center gap-2 bg-platzi-card border border-slate-800 p-1 rounded-lg text-slate-400">
+        <button class="px-3 py-1.5 rounded-md bg-platzi-green text-platzi-bg font-medium">Todos</button>
+        <button class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-white">Activos</button>
+        <button class="px-3 py-1.5 rounded-md hover:bg-slate-800 hover:text-white">Completados</button>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    @if (!Model.Any())
+    {
+        <div class="col-span-3 bg-platzi-card border border-slate-800 rounded-xl p-10 text-center">
+            <span class="material-symbols-outlined text-6xl text-slate-600 mb-4 block mx-auto">create_new_folder</span>
+            <h3 class="text-xl font-semibold text-white">Aún no tienes proyectos</h3>
+            <p class="text-slate-400 mb-6">Crea tu primer proyecto para empezar a gestionar tus tareas.</p>
+            <a href="#" class="inline-flex items-center gap-2 bg-platzi-green text-platzi-bg px-5 py-2.5 rounded-lg font-bold hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[20px]">add</span>
+                Crear Proyecto
+            </a>
+        </div>
+    }
+    else
+    {
+        @foreach (var project in Model)
+        {
+            <div class="bg-platzi-card border border-slate-800 rounded-xl p-6 group hover:border-platzi-green/50 transition-all hover:shadow-[0_0_20px_rgba(152,202,63,0.1)]">
+                <div class="flex items-center justify-between mb-4">
+                    @{
+                        var badgeClass = project.Status == "Completed" ? "bg-blue-600/20 text-blue-400" :
+                                         project.Status == "Active" ? "bg-platzi-green/20 text-platzi-green" :
+                                         "bg-slate-700 text-slate-400";
+                    }
+                    <span class="px-3 py-1 text-xs font-medium rounded-full @badgeClass">
+                        @project.Status
+                    </span>
+                    <p class="text-xs text-slate-500">Creado: @project.CreatedAt.ToString("dd/MM/yyyy")</p>
+                </div>
+                
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-platzi-green transition-colors">
+                    @project.Name
+                </h3>
+                <p class="text-slate-400 text-sm mb-6 line-clamp-2">@project.Description</p>
+                
+                <div class="flex items-center justify-between mt-auto pt-4 border-t border-slate-800">
+                    <div class="flex items-center gap-1 text-slate-500">
+                        <span class="material-symbols-outlined text-[16px]">checklist</span>
+                        <span class="text-xs">Sin resumen</span>
+                    </div>
+                    
+                    <a asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id" class="text-platzi-green text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Ver tareas
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        }
+    }
+</div>

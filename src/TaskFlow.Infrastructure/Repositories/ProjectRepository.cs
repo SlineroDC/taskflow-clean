@@ -29,8 +29,8 @@ public class ProjectRepository : IProjectRepository
 
     public async Task<IEnumerable<Project>> GetAllByUserIdAsync(Guid userId)
     {
-        return await _context.Projects
-            .Where(p => p.UserId == userId)
+        return await _context
+            .Projects.Where(p => p.UserId == userId)
             .OrderByDescending(p => p.CreatedAt)
             .ToListAsync();
     }

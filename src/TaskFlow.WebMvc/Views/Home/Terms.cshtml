@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Términos y Privacidad";
+    Layout = "_PublicLayout";
+    ViewData["BodyClass"] = "bg-background text-on-background font-body selection:bg-primary selection:text-on-primary-container overflow-x-hidden relative";
+}
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#060e1f]/90 backdrop-blur-xl flex justify-between items-center h-16 px-8 border-b border-outline-variant/15 transition-all">
+    <a asp-controller="Home" asp-action="Index" class="text-xl font-black text-primary uppercase tracking-widest hover:opacity-80 transition-opacity">TaskFlow</a>
+    <div class="flex items-center gap-4">
+        <a asp-controller="Auth" asp-action="Login" class="text-sm font-bold text-on-surface-variant hover:text-primary transition-colors">Volver al Portal</a>
+    </div>
+</nav>
+
+<main class="relative pt-24 pb-16 max-w-4xl mx-auto px-6">
+    <div class="absolute top-[10%] left-[-10%] w-[400px] h-[400px] bg-primary/5 kinetic-blob rounded-full pointer-events-none"></div>
+    
+    <header class="mb-16 space-y-6 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-outline-variant/20">
+            <span class="material-symbols-outlined text-[14px] text-primary">gavel</span>
+            <span class="text-[0.65rem] font-bold uppercase tracking-widest text-on-surface-variant">Legal & Cumplimiento</span>
+        </div>
+        <h1 class="font-headline text-4xl md:text-5xl font-extrabold text-on-background tracking-tight">Términos y Privacidad</h1>
+        <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">Acuerdos de uso, manejo de datos y compromisos de seguridad para los estudiantes y usuarios de la plataforma.</p>
+        <p class="text-xs font-mono text-outline-variant uppercase tracking-widest">Última actualización: Noviembre 2025</p>
+    </header>
+
+    <article class="bg-surface-container-low border border-outline-variant/10 rounded-2xl p-8 md:p-12 shadow-2xl relative z-10">
+        <div class="prose prose-invert prose-slate max-w-none">
+            <h2 class="text-2xl font-headline font-bold text-primary mb-4 flex items-center gap-2 border-b border-outline-variant/10 pb-4">
+                <span class="material-symbols-outlined">rule</span> 1. Aceptación de los Términos
+            </h2>
+            <p class="text-on-surface-variant leading-relaxed mb-8">Al acceder y utilizar la plataforma TaskFlow (en adelante, "el Servicio"), usted acepta estar sujeto a estos Términos y Condiciones. El Servicio es proporcionado "tal cual" y está destinado principalmente para fines de gestión de proyectos y evaluación educativa dentro del entorno de formación técnica.</p>
+
+            <h2 class="text-2xl font-headline font-bold text-primary mb-4 flex items-center gap-2 border-b border-outline-variant/10 pb-4">
+                <span class="material-symbols-outlined">data_usage</span> 2. Uso y Privacidad de Datos
+            </h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">Nos tomamos en serio su privacidad. TaskFlow recopila información mínima necesaria para el funcionamiento del sistema:</p>
+            <ul class="list-disc pl-5 mb-8 text-on-surface-variant space-y-2">
+                <li><strong class="text-on-surface">Datos de Cuenta:</strong> Correo electrónico y credenciales encriptadas mediante algoritmos de hash seguros.</li>
+                <li><strong class="text-on-surface">Datos de Proyecto:</strong> La información ingresada en los tableros (nombres de proyectos, descripciones, tareas) pertenece al usuario y no es compartida con terceros comerciales.</li>
+                <li><strong class="text-on-surface">Analíticas de Uso:</strong> Recopilamos datos anónimos de interacción para mejorar la experiencia de usuario (UX) y optimizar la arquitectura del software.</li>
+            </ul>
+
+            <h2 class="text-2xl font-headline font-bold text-primary mb-4 flex items-center gap-2 border-b border-outline-variant/10 pb-4">
+                <span class="material-symbols-outlined">gpp_good</span> 3. Seguridad y Responsabilidad
+            </h2>
+            <p class="text-on-surface-variant leading-relaxed mb-4">TaskFlow implementa medidas de seguridad estándar de la industria (incluyendo inyección de dependencias, protección contra inyección SQL vía Entity Framework Core y autenticación JWT). Sin embargo:</p>
+            <div class="bg-error-container/10 border-l-4 border-error p-4 rounded-r mb-8">
+                <p class="text-sm text-error font-medium m-0">El usuario es el único responsable de mantener la confidencialidad de sus credenciales. No nos hacemos responsables por la pérdida de datos derivada del uso indebido de la cuenta.</p>
+            </div>
+
+            <h2 class="text-2xl font-headline font-bold text-primary mb-4 flex items-center gap-2 border-b border-outline-variant/10 pb-4">
+                <span class="material-symbols-outlined">delete_forever</span> 4. Retención y Eliminación
+            </h2>
+            <p class="text-on-surface-variant leading-relaxed mb-8">Aplicamos políticas de "Soft Delete" para la recuperación de información. Si desea eliminar permanentemente su cuenta y todos los datos asociados (Hard Delete), debe contactar al soporte técnico. Los datos residuales en copias de seguridad se purgan en un ciclo de 30 días.</p>
+        </div>
+    </article>
+</main>
