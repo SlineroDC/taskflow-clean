@@ -1,12 +1,12 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TaskFlow.Application.DTOs;
 using TaskFlow.Application.Interfaces;
 using TaskFlow.Domain.Exceptions;
 
 namespace TaskFlow.WebMvc.Controllers;
 
-// 1. EL CANDADO: Esto es lo que faltaba. Sin esto, la página es pública.
 [Authorize]
 public class ProjectsController : Controller
 {
@@ -17,24 +17,89 @@ public class ProjectsController : Controller
         _projectService = projectService;
     }
 
+    // --- HELPER PRIVADO PARA OBTENER EL USUARIO (DRY) ---
+    private Guid GetCurrentUserId()
+    {
+        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (string.IsNullOrEmpty(userIdClaim))
+            throw new UnauthorizedAccessException("Usuario no autenticado.");
+
+        return Guid.Parse(userIdClaim);
+    }
+
     // GET: /Projects
     public async Task<IActionResult> Index()
     {
-        // 2. SEGURIDAD REAL: Obtenemos el ID del usuario logueado desde la Cookie
-        var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (string.IsNullOrEmpty(userIdClaim))
+        try
         {
-            // Si por algún error de configuración no hay ID, cerramos sesión y mandamos al login
+            var userId = GetCurrentUserId();
+            var projects = await _projectService.GetProjectsAsync(userId);
+            return View(projects);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return RedirectToAction("Login", "Auth");
+        }
+    }
+
+    // POST: /Projects/Create
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateProjectDto dto)
+    {
+        if (!ModelState.IsValid)
+            return RedirectToAction(nameof(Index));
+
+        try
+        {
+            var userId = GetCurrentUserId();
+            await _projectService.CreateProjectAsync(userId, dto);
+            TempData["SuccessMessage"] = "Proyecto inicializado correctamente.";
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
+        catch (UnauthorizedAccessException)
+        {
             return RedirectToAction("Login", "Auth");
         }
 
-        var userId = Guid.Parse(userIdClaim);
+        return RedirectToAction(nameof(Index));
+    }
 
-        // Ahora pedimos los proyectos del usuario REAL, no del dummy
-        var projects = await _projectService.GetProjectsAsync(userId);
+    // POST: /Projects/Edit/{id}
+    [HttpPost]
+    public async Task<IActionResult> Edit(Guid id, UpdateProjectDto dto)
+    {
+        if (!ModelState.IsValid)
+            return RedirectToAction(nameof(Index));
 
-        return View(projects);
+        try
+        {
+            await _projectService.UpdateProjectAsync(id, dto);
+            TempData["SuccessMessage"] = "Proyecto actualizado correctamente.";
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    // GET: /Projects/Details/{id}
+    public async Task<IActionResult> Details(Guid id)
+    {
+        try
+        {
+            var project = await _projectService.GetProjectDetailsAsync(id);
+            return View(project);
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+            return RedirectToAction(nameof(Index));
+        }
     }
 
     // POST: /Projects/Activate/{id}
@@ -54,19 +119,20 @@ public class ProjectsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: /Projects/Details/{id}
-    // public async Task<IActionResult> Details(Guid id)
-    // {
-    //     try
-    //     {
-    //         // También protegemos los detalles para que solo se vean proyectos existentes
-    //         var project = await _projectService.GetProjectDetailsAsync(id);
-    //         return View(project);
-    //     }
-    //     catch (DomainException ex)
-    //     {
-    //         TempData["ErrorMessage"] = ex.Message;
-    //         return RedirectToAction(nameof(Index));
-    //     }
-    // }
+    // POST: /Projects/Delete/{id}
+    [HttpPost]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            await _projectService.DeleteProjectAsync(id);
+            TempData["SuccessMessage"] = "Proyecto eliminado del sistema.";
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
 }

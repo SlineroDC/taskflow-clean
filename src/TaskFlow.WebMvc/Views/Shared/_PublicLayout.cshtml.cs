@@ -8,14 +8,9 @@ using Microsoft.Extensions.Logging;
 
 namespace TaskFlow.WebMvc.Views.Shared
 {
-    public class _PublicLayout : PageModel
+    public class _PublicLayout(ILogger<_PublicLayout> logger) : PageModel
     {
-        private readonly ILogger<_PublicLayout> _logger;
-
-        public _PublicLayout(ILogger<_PublicLayout> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger<_PublicLayout> _logger = logger;
 
         public void OnGet() { }
     }

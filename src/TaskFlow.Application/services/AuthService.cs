@@ -6,19 +6,12 @@ using TaskFlow.Domain.Exceptions;
 
 namespace TaskFlow.Application.Services;
 
-public class AuthService : IAuthService
+public class AuthService(IUserRepository userRepository) : IAuthService
 {
-    private readonly IUserRepository _userRepository;
-
-    public AuthService(IUserRepository userRepository)
-    {
-        _userRepository = userRepository;
-    }
-
     public async Task<User> RegisterAsync(RegisterDto dto)
     {
         // 1. Verificar si el correo ya existe
-        var existingUser = await _userRepository.GetByEmailAsync(dto.Email);
+        var existingUser = await userRepository.GetByEmailAsync(dto.Email);
         if (existingUser != null)
             throw new DomainException("El correo electrónico ya está en uso.");
 
@@ -28,8 +21,8 @@ public class AuthService : IAuthService
         // 3. Crear el usuario
         var user = new User(dto.FullName, dto.Email, passwordHash);
 
-        await _userRepository.AddAsync(user);
-        await _userRepository.SaveChangesAsync();
+        await userRepository.AddAsync(user);
+        await userRepository.SaveChangesAsync();
 
         return user;
     }
@@ -38,7 +31,7 @@ public class AuthService : IAuthService
     {
         // 1. Buscar el usuario
         var user =
-            await _userRepository.GetByEmailAsync(dto.Email)
+            await userRepository.GetByEmailAsync(dto.Email)
             ?? throw new DomainException("Credenciales inválidas.");
 
         // 2. Verificar la contraseña
@@ -57,7 +50,7 @@ public class AuthService : IAuthService
 
         // Buscamos al usuario por su Id real
         var user =
-            await _userRepository.GetByIdAsync(id)
+            await userRepository.GetByIdAsync(id)
             ?? throw new DomainException("Usuario no encontrado.");
 
         // 2. Verificar que la contraseña actual sea la correcta antes de permitir el cambio
@@ -71,6 +64,6 @@ public class AuthService : IAuthService
         user.UpdatePassword(newHash);
 
         // 5. Persistir los cambios en la base de datos
-        await _userRepository.SaveChangesAsync();
+        await userRepository.SaveChangesAsync();
     }
 }

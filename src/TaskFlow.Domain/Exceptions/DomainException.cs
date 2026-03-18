@@ -1,7 +1,5 @@
 namespace TaskFlow.Domain.Exceptions;
 
-public class DomainException : Exception
+public class DomainException(string message) : Exception(message)
 {
-    public DomainException(string message)
-        : base(message) { }
 }

@@ -5,20 +5,21 @@ using TaskFlow.Domain.Exceptions;
 
 namespace TaskFlow.Application.Services;
 
-public class ProjectService : IProjectService
+public class ProjectService(IProjectRepository projectRepository, IUserRepository userRepository)
+    : IProjectService
 {
-    private readonly IProjectRepository _projectRepository;
-
-    public ProjectService(IProjectRepository projectRepository)
+    public async Task<ProjectDto> CreateProjectAsync(Guid userId, CreateProjectDto dto)
     {
-        _projectRepository = projectRepository;
-    }
+        // 1. Validar que el usuario exista
+        var user =
+            await userRepository.GetByIdAsync(userId)
+            ?? throw new DomainException("El usuario autenticado no existe en la base de datos.");
 
-    public async Task<ProjectDto> CreateProjectAsync(Guid userId, string name, string description)
-    {
-        var project = new Project(userId, name, description);
-        await _projectRepository.AddAsync(project);
-        await _projectRepository.SaveChangesAsync();
+        // 2. Crear la entidad
+        var project = new Project(dto.Name, dto.Description, userId);
+
+        await projectRepository.AddAsync(project);
+        await projectRepository.SaveChangesAsync();
 
         return new ProjectDto
         {
@@ -32,7 +33,8 @@ public class ProjectService : IProjectService
 
     public async Task<IEnumerable<ProjectDto>> GetProjectsAsync(Guid userId)
     {
-        var projects = await _projectRepository.GetAllByUserIdAsync(userId);
+        var projects = await projectRepository.GetByUserIdAsync(userId);
+
         return projects.Select(p => new ProjectDto
         {
             Id = p.Id,
@@ -43,58 +45,75 @@ public class ProjectService : IProjectService
         });
     }
 
-    public async Task ActivateProjectAsync(Guid projectId)
+    public async Task<ProjectDetailsDto> GetProjectDetailsAsync(Guid projectId)
     {
-        // exige verificar si hay tareas antes de activar.
         var project =
-            await _projectRepository.GetByIdAsync(projectId, includeTasks: true)
+            await projectRepository.GetByIdAsync(projectId, includeTasks: true)
             ?? throw new DomainException("Proyecto no encontrado.");
 
-        project.Activate(); // La entidad valida la regla de negocio
+        var activeTasks = project.Tasks.Where(t => !t.IsDeleted).ToList();
 
-        await _projectRepository.UpdateAsync(project);
-        await _projectRepository.SaveChangesAsync();
+        return new ProjectDetailsDto
+        {
+            Id = project.Id,
+            Name = project.Name,
+            Description = project.Description,
+            Status = project.Status.ToString(),
+            TotalTasks = activeTasks.Count,
+            CompletedTasks = activeTasks.Count(t => t.IsCompleted),
+            PendingTasks = activeTasks.Count(t => !t.IsCompleted),
+            Tasks = activeTasks
+                .Select(t => new TaskItemDto
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Priority = t.Priority.ToString(),
+                    Order = t.Order,
+                    IsCompleted = t.IsCompleted,
+                })
+                .OrderBy(t => t.Order)
+                .ToList(),
+        };
+    }
+
+    public async Task UpdateProjectAsync(Guid projectId, UpdateProjectDto dto)
+    {
+        var project =
+            await projectRepository.GetByIdAsync(projectId)
+            ?? throw new DomainException("Proyecto no encontrado.");
+
+        project.UpdateDetails(dto.Name, dto.Description);
+
+        await projectRepository.SaveChangesAsync();
+    }
+
+    public async Task ActivateProjectAsync(Guid projectId)
+    {
+        var project =
+            await projectRepository.GetByIdAsync(projectId)
+            ?? throw new DomainException("Proyecto no encontrado.");
+
+        project.Activate();
+        await projectRepository.SaveChangesAsync();
     }
 
     public async Task CompleteProjectAsync(Guid projectId)
     {
         var project =
-            await _projectRepository.GetByIdAsync(projectId, includeTasks: true)
+            await projectRepository.GetByIdAsync(projectId, includeTasks: true)
             ?? throw new DomainException("Proyecto no encontrado.");
 
         project.Complete();
-
-        await _projectRepository.UpdateAsync(project);
-        await _projectRepository.SaveChangesAsync();
+        await projectRepository.SaveChangesAsync();
     }
 
     public async Task DeleteProjectAsync(Guid projectId)
     {
         var project =
-            await _projectRepository.GetByIdAsync(projectId)
+            await projectRepository.GetByIdAsync(projectId)
             ?? throw new DomainException("Proyecto no encontrado.");
+        project.Delete();
 
-        project.SoftDelete();
-
-        await _projectRepository.UpdateAsync(project);
-        await _projectRepository.SaveChangesAsync();
-    }
-
-    public async Task<ProjectSummaryDto> GetProjectSummaryAsync(Guid projectId)
-    {
-        var project =
-            await _projectRepository.GetByIdAsync(projectId, includeTasks: true)
-            ?? throw new DomainException("Proyecto no encontrado.");
-
-        var activeTasks = project.Tasks.Where(t => !t.IsDeleted).ToList();
-
-        return new ProjectSummaryDto
-        {
-            ProjectId = project.Id,
-            Name = project.Name,
-            Status = project.Status.ToString(),
-            TotalTasks = activeTasks.Count,
-            CompletedTasks = activeTasks.Count(t => t.IsCompleted),
-        };
+        await projectRepository.SaveChangesAsync();
     }
 }

@@ -4,8 +4,8 @@ namespace TaskFlow.Application.Interfaces;
 
 public interface ITaskService
 {
-    Task<TaskItemDto> AddTaskAsync(Guid projectId, string title, int priorityValue);
+    Task<TaskItemDto> AddTaskAsync(Guid projectId, AddTaskDto dto);
     Task CompleteTaskAsync(Guid taskId);
-    Task ReorderTaskAsync(Guid projectId, Guid taskId, int newOrder); // Regla compleja
+    Task ReorderTaskAsync(Guid projectId, Guid taskId, int newOrder);
     Task DeleteTaskAsync(Guid taskId);
 }

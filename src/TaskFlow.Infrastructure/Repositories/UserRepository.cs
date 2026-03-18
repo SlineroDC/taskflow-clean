@@ -5,32 +5,25 @@ using TaskFlow.Infrastructure.Persistence;
 
 namespace TaskFlow.Infrastructure.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository(TaskFlowDbContext context) : IUserRepository
 {
-    private readonly TaskFlowDbContext _context;
-
-    public UserRepository(TaskFlowDbContext context)
-    {
-        _context = context;
-    }
-
     public async Task<User?> GetByEmailAsync(string email)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+        return await context.Users.FirstOrDefaultAsync(u => u.Email == email);
     }
 
     public async Task<User?> GetByIdAsync(Guid id)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        return await context.Users.FirstOrDefaultAsync(u => u.Id == id);
     }
 
     public async Task AddAsync(User user)
     {
-        await _context.Users.AddAsync(user);
+        await context.Users.AddAsync(user);
     }
 
     public async Task SaveChangesAsync()
     {
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

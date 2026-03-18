@@ -1,5 +1,11 @@
 namespace TaskFlow.Application.DTOs;
 
+public class AddTaskDto
+{
+    public string Title { get; set; } = string.Empty;
+    public int PriorityValue { get; set; }
+}
+
 public class TaskItemDto
 {
     public Guid Id { get; set; }

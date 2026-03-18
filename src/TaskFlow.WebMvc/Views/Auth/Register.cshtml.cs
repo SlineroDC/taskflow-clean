@@ -8,14 +8,9 @@ using Microsoft.Extensions.Logging;
 
 namespace TaskFlow.WebMvc.Views.Auth
 {
-    public class Register : PageModel
+    public class Register(ILogger<Register> logger) : PageModel
     {
-        private readonly ILogger<Register> _logger;
-
-        public Register(ILogger<Register> logger)
-        {
-            _logger = logger;
-        }
+        private readonly ILogger<Register> _logger = logger;
 
         public void OnGet()
         {

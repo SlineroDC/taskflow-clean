@@ -11,7 +11,7 @@ public class User
 
     // Relación de navegación
     public IReadOnlyCollection<Project> Projects => _projects.AsReadOnly();
-    private readonly List<Project> _projects = new();
+    private readonly List<Project> _projects = [];
 
     protected User() { } // Constructor vacío para EF Core
 
