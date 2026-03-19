@@ -15,17 +15,18 @@ public class TaskItemRepository(TaskFlowDbContext context) : ITaskItemRepository
 
     public async Task<IEnumerable<TaskItem>> GetTasksByProjectIdAsync(Guid projectId)
     {
-        return await context.Tasks
-            .Where(t => t.ProjectId == projectId && !t.IsDeleted) // <-- FILTRO VITAL
+        return await context
+            .Tasks.Where(t => t.ProjectId == projectId && !t.IsDeleted) 
             .OrderBy(t => t.Order)
             .ToListAsync();
     }
 
     public async Task<int> GetNextTaskOrderAsync(Guid projectId)
     {
-        var maxOrder = await context.Tasks
-            .Where(t => t.ProjectId == projectId && !t.IsDeleted) // <-- FILTRO VITAL
-            .MaxAsync(t => (int?)t.Order) ?? 0;
+        var maxOrder =
+            await context
+                .Tasks.Where(t => t.ProjectId == projectId && !t.IsDeleted) // <-- FILTRO VITAL
+                .MaxAsync(t => (int?)t.Order) ?? 0;
 
         return maxOrder + 1;
     }

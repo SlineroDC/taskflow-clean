@@ -81,10 +81,26 @@
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                             <span class="material-symbols-outlined text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
                         </div>
-                        <input class="block w-full pl-12 pr-12 py-4 bg-surface-container-high border-none text-on-surface rounded-lg focus:ring-2 focus:ring-primary focus:bg-surface-container-highest transition-all duration-300 placeholder-on-surface-variant/30" name="password" placeholder="••••••••••••" required type="password"/>
+                        <input id="regPassword" class="block w-full pl-12 pr-12 py-4 bg-surface-container-high border-none text-on-surface rounded-lg focus:ring-2 focus:ring-primary focus:bg-surface-container-highest transition-all duration-300 placeholder-on-surface-variant/30" name="password" placeholder="••••••••••••" required type="password"/>
+                        <button type="button" onclick="togglePassword('regPassword', 'eyeIconReg1')" class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-on-surface transition-colors">
+                            <span id="eyeIconReg1" class="material-symbols-outlined">visibility</span>
+                        </button>
                     </div>
                 </div>
-                
+
+                <div class="space-y-2">
+                    <label class="block text-sm font-semibold tracking-wide text-on-surface-variant uppercase">Confirmar Clave</label>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-on-surface-variant group-focus-within:text-primary transition-colors">verified_user</span>
+                        </div>
+                        <input id="regConfirm" class="block w-full pl-12 pr-12 py-4 bg-surface-container-high border-none text-on-surface rounded-lg focus:ring-2 focus:ring-primary focus:bg-surface-container-highest transition-all duration-300 placeholder-on-surface-variant/30" name="confirmPassword" placeholder="••••••••••••" required type="password"/>
+                        <button type="button" onclick="togglePassword('regConfirm', 'eyeIconReg2')" class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-on-surface transition-colors">
+                            <span id="eyeIconReg2" class="material-symbols-outlined">visibility</span>
+                        </button>
+                    </div>
+                </div>
+
                 <button type="submit" class="w-full group relative flex items-center justify-center py-4 px-6 bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-headline font-bold rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(152,202,63,0.3)] hover:shadow-[0_0_30px_rgba(152,202,63,0.5)] mt-6">
                     <span class="relative z-10 flex items-center gap-2 uppercase tracking-widest text-sm">
                         Registrar Usuario
@@ -101,3 +117,16 @@
         </div>
     </section>
 </main>
+<script>
+    function togglePassword(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.textContent = 'visibility_off';
+        } else {
+            input.type = 'password';
+            icon.textContent = 'visibility';
+        }
+    }
+</script>

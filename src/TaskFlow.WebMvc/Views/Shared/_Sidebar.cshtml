@@ -1,50 +1,38 @@
-<aside class="w-64 bg-[#060e1f] border-r border-[#1f2b48] flex flex-col h-full shrink-0">
-    <div class="p-6 flex items-center gap-3">
-        <div class="w-8 h-8 bg-[#98CA3F] rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(152,202,63,0.3)]">
-            <span class="text-[#060e1f] font-black text-xl font-manrope">T</span>
-        </div>
-        <span class="text-[#98CA3F] font-bold text-2xl tracking-wide font-manrope">TaskFlow</span>
-    </div>
-    
-    <nav class="flex-1 px-4 space-y-2 mt-4 overflow-y-auto">
-        <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Menú Principal</p>
-        
-        <a asp-controller="Projects" asp-action="Index" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-[#1f2b48] text-[#98CA3F] font-medium transition-colors border border-[#98CA3F]/20 shadow-[0_0_10px_rgba(152,202,63,0.05)]">
-            <span class="material-symbols-outlined text-[20px]">dashboard</span>
-            Mis Proyectos
-        </a>
-        
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-[#1f2b48] hover:text-[#dee5ff] transition-colors">
-            <span class="material-symbols-outlined text-[20px]">task_alt</span>
-            Mis Tareas
-        </a>
+@using System.Security.Claims
 
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-[#1f2b48] hover:text-[#dee5ff] transition-colors">
-            <span class="material-symbols-outlined text-[20px]">settings</span>
-            Configuración
+<aside class="fixed inset-y-0 left-0 w-64 bg-surface border-r border-outline-variant/15 flex flex-col z-40 transition-transform duration-300">
+    <div class="h-16 flex items-center px-8 border-b border-outline-variant/10 shrink-0">
+        <a asp-controller="Projects" asp-action="Index" class="text-xl font-black text-primary uppercase tracking-widest flex items-center gap-2">
+            <span class="material-symbols-outlined">auto_awesome</span> TaskFlow
         </a>
-        
-        <div class="pt-6 pb-2">
-            <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Ayuda</p>
-            <a asp-controller="Docs" asp-action="Index" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-[#1f2b48] hover:text-[#dee5ff] transition-colors">
-                <span class="material-symbols-outlined text-[20px]">menu_book</span>
-                Documentación
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:bg-[#1f2b48] hover:text-[#dee5ff] transition-colors">
-                <span class="material-symbols-outlined text-[20px]">security</span>
-                Seguridad
-            </a>
-        </div>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2 custom-scrollbar">
+        <a asp-controller="Projects" asp-action="Index" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-highest text-primary font-bold transition-all">
+            <span class="material-symbols-outlined">space_dashboard</span> Dashboard
+        </a>
+        <a asp-controller="Home" asp-action="Settings" class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium">
+            <span class="material-symbols-outlined">settings</span> Configuración
+        </a>
+        <a asp-controller="Home" asp-action="Docs" class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium">
+            <span class="material-symbols-outlined">menu_book</span> Manual de Usuario
+        </a>
     </nav>
-    
-    <div class="p-4 border-t border-[#1f2b48]">
-        <div class="flex items-center gap-3 bg-[#1f2b48]/50 hover:bg-[#1f2b48] transition-colors p-3 rounded-xl cursor-pointer">
-            <img src="https://ui-avatars.com/api/?name=Riwi+Dev&background=98CA3F&color=060e1f&bold=true" class="w-10 h-10 rounded-full border-2 border-[#98CA3F]" alt="User Avatar">
-            <div class="overflow-hidden">
-                <p class="font-bold text-[#dee5ff] text-sm truncate">Riwi Developer</p>
-                <p class="text-xs text-slate-400 truncate">admin@riwi.io</p>
+
+    <div class="p-4 border-t border-outline-variant/10 shrink-0">
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer border border-outline-variant/5">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary-container font-headline font-bold text-lg shadow-inner shrink-0">
+                @(User.FindFirstValue(ClaimTypes.Name)?.FirstOrDefault() ?? 'U')
             </div>
-            <span class="material-symbols-outlined text-slate-400 ml-auto text-[18px]">more_vert</span>
+            <div class="flex-1 min-w-0">
+                <h4 class="text-sm font-bold text-on-surface truncate">@User.FindFirstValue(ClaimTypes.Name)</h4>
+                <p class="text-[10px] text-on-surface-variant truncate uppercase tracking-wider">Kinetic Member</p>
+            </div>
+            <form asp-controller="Auth" asp-action="Logout" method="post" class="shrink-0">
+                <button type="submit" class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-1" title="Cerrar Sesión">
+                    logout
+                </button>
+            </form>
         </div>
     </div>
 </aside>

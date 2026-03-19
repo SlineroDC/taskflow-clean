@@ -34,6 +34,7 @@ public class ProjectsController : Controller
         {
             var userId = GetCurrentUserId();
             var projects = await _projectService.GetProjectsAsync(userId);
+            ViewData["ShowNewProjectBtn"] = true;
             return View(projects);
         }
         catch (UnauthorizedAccessException)

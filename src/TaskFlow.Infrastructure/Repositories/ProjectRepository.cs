@@ -41,7 +41,8 @@ public class ProjectRepository(TaskFlowDbContext context) : IProjectRepository
     public async Task<IEnumerable<Project>> GetByUserIdAsync(Guid userId)
     {
         return await context
-            .Projects.Where(p => p.UserId == userId && !p.IsDeleted)
+            .Projects.Include(p => p.Tasks)
+            .Where(p => p.UserId == userId && !p.IsDeleted)
             .OrderByDescending(p => p.CreatedAt)
             .ToListAsync();
     }

@@ -17,14 +17,14 @@
             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, #40485c 1px, transparent 0); background-size: 40px 40px;"></div>
         </div>
         
-        <div class="relative z-10">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded flex items-center justify-center shadow-[0_0_20px_rgba(188,241,97,0.3)]">
-                    <span class="material-symbols-outlined text-on-primary-container font-bold" style="font-variation-settings: 'FILL' 1;">bolt</span>
+            <div class="relative z-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded flex items-center justify-center shadow-[0_0_20px_rgba(188,241,97,0.3)]">
+                        <span class="material-symbols-outlined text-on-primary-container font-bold" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                    </div>
+                    <span class="font-headline text-2xl font-black text-primary uppercase tracking-widest">TaskFlow</span>
                 </div>
-                <span class="font-headline text-2xl font-black text-primary uppercase tracking-widest">TaskFlow</span>
             </div>
-        </div>
         
         <div class="relative z-10 max-w-lg mt-12 md:mt-0">
             <p class="text-primary font-headline font-bold text-sm tracking-[0.2em] uppercase mb-4">Kinetic Academy</p>
@@ -79,9 +79,9 @@
                             <span class="material-symbols-outlined text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
                         </div>
                         <input class="block w-full pl-12 pr-12 py-4 bg-surface-container-high border-none text-on-surface rounded-lg focus:ring-2 focus:ring-primary focus:bg-surface-container-highest transition-all duration-300 placeholder-on-surface-variant/30" id="password" name="password" placeholder="••••••••••••" required type="password"/>
-                        <button class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-on-surface transition-colors" type="button">
-                            <span class="material-symbols-outlined">visibility</span>
-                        </button>
+                        <button class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-on-surface transition-colors" onclick="togglePassword('password', 'eyeIconPassword')" type="button">
+                            <span class="material-symbols-outlined" id="eyeIconPassword">visibility</span>
+                        </button>   
                     </div>
                 </div>
                 
@@ -129,4 +129,16 @@
     </section>
 
 </main>
-
+<script>
+    function togglePassword(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.textContent = 'visibility_off';
+        } else {
+            input.type = 'password';
+            icon.textContent = 'visibility';
+        }
+    }
+</script>

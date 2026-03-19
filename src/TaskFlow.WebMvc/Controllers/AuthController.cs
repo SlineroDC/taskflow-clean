@@ -13,7 +13,14 @@ public class AuthController(IAuthService authService) : Controller
     private readonly IAuthService _authService = authService;
 
     [HttpGet]
-    public IActionResult Login() => View();
+    public IActionResult Login()
+    {
+        // Si el usuario ya está logueado, lo mandamos al Dashboard
+        if (User.Identity is { IsAuthenticated: true })
+            return RedirectToAction("Index", "Projects");
+
+        return View();
+    }
 
     [HttpPost]
     public async Task<IActionResult> Login(LoginDto dto)
@@ -22,12 +29,11 @@ public class AuthController(IAuthService authService) : Controller
         {
             var user = await _authService.LoginAsync(dto);
 
-            // Crear los "Claims" (Datos que guardaremos en la Cookie)
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.FullName),
-                new Claim(ClaimTypes.Email, user.Email),
+                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new(ClaimTypes.Name, user.FullName),
+                new(ClaimTypes.Email, user.Email),
             };
 
             var claimsIdentity = new ClaimsIdentity(
@@ -35,7 +41,6 @@ public class AuthController(IAuthService authService) : Controller
                 CookieAuthenticationDefaults.AuthenticationScheme
             );
 
-            // Iniciar sesión en .NET (Genera la Cookie)
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity)
@@ -51,11 +56,25 @@ public class AuthController(IAuthService authService) : Controller
     }
 
     [HttpGet]
-    public IActionResult Register() => View();
+    public IActionResult Register()
+    {
+        // Si el usuario ya está logueado, lo mandamos al Dashboard
+        if (User.Identity is { IsAuthenticated: true })
+            return RedirectToAction("Index", "Projects");
+
+        return View();
+    }
 
     [HttpPost]
     public async Task<IActionResult> Register(RegisterDto dto)
     {
+        // Validación de confirmación de contraseña
+        if (dto.Password != dto.ConfirmPassword)
+        {
+            TempData["ErrorMessage"] = "Las contraseñas no coinciden.";
+            return View();
+        }
+
         try
         {
             await _authService.RegisterAsync(dto);

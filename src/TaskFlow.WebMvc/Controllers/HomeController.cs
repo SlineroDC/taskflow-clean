@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TaskFlow.WebMvc.Controllers;
@@ -12,9 +13,16 @@ public class HomeController : Controller
         return View();
     }
 
+    [Authorize]
+    public IActionResult Settings() => View();
+
+    [Authorize]
+    public IActionResult Docs() => View();
+
+    [Authorize]
+    public IActionResult Community() => View();
+
     public IActionResult Terms() => View();
 
     public IActionResult Security() => View();
-
-    public IActionResult Docs() => View();
 }

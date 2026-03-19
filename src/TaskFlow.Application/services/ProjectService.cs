@@ -35,13 +35,28 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
     {
         var projects = await projectRepository.GetByUserIdAsync(userId);
 
-        return projects.Select(p => new ProjectDto
+        return projects.Select(p =>
         {
-            Id = p.Id,
-            Name = p.Name,
-            Description = p.Description,
-            Status = p.Status.ToString(),
-            CreatedAt = p.CreatedAt,
+            // 1. Filtramos las tareas que no estén borradas lógicamente
+            var activeTasks = p.Tasks.Where(t => !t.IsDeleted).ToList();
+
+            int total = activeTasks.Count;
+            int completed = activeTasks.Count(t => t.IsCompleted);
+
+            // 2. Calculamos el porcentaje (Evitamos división por cero)
+            int percentage = total > 0 ? (int)Math.Round((double)completed / total * 100) : 0;
+
+            // 3. Retornamos el DTO ya con las métricas calculadas
+            return new ProjectDto
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                Status = p.Status.ToString(),
+                CreatedAt = p.CreatedAt,
+                TotalTasks = total,
+                CompletionPercentage = percentage,
+            };
         });
     }
 

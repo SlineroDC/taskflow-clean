@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TaskFlow</title>
     
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" type="x-ico" href="~/favicon.ico" />
     
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     
@@ -15,11 +16,30 @@
             darkMode: "class",
             theme: {
                 extend: {
+                    fontFamily: {
+                        headline: ['Manrope', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
                     colors: {
                         "background": "#060e1f",
-                        "surface-bright": "#1f2b48",
                         "on-background": "#dee5ff",
-                        "primary": "#98CA3F", /* Verde Platzi */
+                        "surface": "#0f172a",
+                        "surface-container-lowest": "#0b1222",
+                        "surface-container-low": "#111a2f",
+                        "surface-container": "#15203b",
+                        "surface-container-high": "#1b2746",
+                        "surface-container-highest": "#223054",
+                        "on-surface": "#e2e8f0",
+                        "on-surface-variant": "#94a3b8",
+                        "outline": "#475569",
+                        "outline-variant": "#334155",
+                        "primary": "#98CA3F", /* Tu Verde Neón */
+                        "on-primary": "#000000",
+                        "primary-container": "#203a11",
+                        "on-primary-container": "#bcf161",
+                        "secondary-container": "#223547",
+                        "error": "#ffb4ab",
+                        "tertiary-dim": "#f0e04a",
                     }
                 }
             }
@@ -32,28 +52,32 @@
             color: #dee5ff;
             font-family: 'Inter', sans-serif;
         }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Manrope', sans-serif;
+        /* Custom Scrollbar minimalista para los sidebars/modals */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 10px;
         }
     </style>
 </head>
-<body class="h-full flex antialiased">
+<body class="h-full antialiased selection:bg-primary selection:text-black">
     
     <partial name="_Sidebar" />
 
-    <div class="flex-1 flex flex-col h-full overflow-hidden">
+    <div class="ml-64 flex flex-col min-h-screen relative overflow-hidden z-0 bg-background">
+        
+        <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
         <partial name="_Topbar" />
 
-        <main class="flex-1 overflow-x-hidden overflow-y-auto p-8">
-            @if (TempData["SuccessMessage"] != null)
-            {
-                <div class="bg-green-900/50 border border-green-500 text-green-400 p-4 rounded-lg mb-6">@TempData["SuccessMessage"]</div>
-            }
-            @if (TempData["ErrorMessage"] != null)
-            {
-                <div class="bg-red-900/50 border border-red-500 text-red-400 p-4 rounded-lg mb-6">@TempData["ErrorMessage"]</div>
-            }
-            
+        <main class="flex-1 p-8 relative z-10 overflow-x-hidden">
             @RenderBody()
         </main>
     </div>
