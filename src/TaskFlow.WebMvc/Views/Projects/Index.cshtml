@@ -244,21 +244,41 @@
             document.getElementById('editProjectId').value = id;
             document.getElementById('editProjectName').value = name;
             document.getElementById('editProjectDesc').value = desc;
+            
+            // Actualiza la URL a la que apuntará el formulario
             document.getElementById('editForm').action = '/Projects/Edit/' + id;
+            
             document.getElementById('editProjectModal').classList.remove('hidden');
         }
 
         function closeEditModal() {
             document.getElementById('editProjectModal').classList.add('hidden');
         }
-
-        // Conectar el botón del Topbar para crear proyecto
+        // 2.Topbar)
         document.addEventListener('DOMContentLoaded', () => {
-            const topbarBtn = document.querySelector('[data-new-project]');
-            if (topbarBtn) {
-                topbarBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    toggleProjectModal();
+            // Buscamos el input de búsqueda que está en el Topbar
+            const searchInput = document.querySelector('input[placeholder="Buscar..."]');
+            
+            // Buscamos todas las tarjetas de proyectos (que tienen estas clases)
+            const projectCards = document.querySelectorAll('.grid > .bg-surface-container');
+
+            if (searchInput && projectCards.length > 0) {
+                searchInput.addEventListener('input', (e) => {
+                    const term = e.target.value.toLowerCase(); // Lo que escribes
+                    
+                    projectCards.forEach(card => {
+                        // Buscamos el título del proyecto (la etiqueta h3)
+                        const titleElement = card.querySelector('h3');
+                        if (titleElement) {
+                            const title = titleElement.textContent.toLowerCase();
+                            // Si el título incluye lo que escribes, se muestra; si no, se oculta
+                            if (title.includes(term)) {
+                                card.style.display = 'flex'; 
+                            } else {
+                                card.style.display = 'none'; 
+                            }
+                        }
+                    });
                 });
             }
         });

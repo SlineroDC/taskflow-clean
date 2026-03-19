@@ -16,6 +16,6 @@ public class TaskItemConfiguration : IEntityTypeConfiguration<TaskItem>
         builder.HasQueryFilter(t => !t.IsDeleted);
 
         //Índice único compuesto para evitar órdenes duplicados por proyecto
-        builder.HasIndex(t => new { t.ProjectId, t.Order }).IsUnique();
+        builder.HasIndex(t => new { t.ProjectId, t.Order });
     }
 }

@@ -82,6 +82,15 @@ public class TaskService(ITaskItemRepository taskRepository, IProjectRepository 
         await taskRepository.SaveChangesAsync();
     }
 
+    public async Task ReorderTaskAsync(Guid taskId, int newOrder)
+    {
+        var task =
+            await taskRepository.GetByIdAsync(taskId)
+            ?? throw new DomainException("Tarea no encontrada.");
+
+        await ReorderTaskAsync(task.ProjectId, taskId, newOrder);
+    }
+
     public async Task DeleteTaskAsync(Guid taskId)
     {
         var task =
@@ -97,6 +106,33 @@ public class TaskService(ITaskItemRepository taskRepository, IProjectRepository 
         foreach (var t in remainingTasks)
         {
             t.UpdateOrder(t.Order - 1);
+        }
+
+        await taskRepository.SaveChangesAsync();
+    }
+
+    public async Task UpdateTaskAsync(Guid taskId, string title, int priorityValue)
+    {
+        var task =
+            await taskRepository.GetByIdAsync(taskId)
+            ?? throw new DomainException("Tarea no encontrada.");
+
+        task.UpdateDetails(title, (TaskPriority)priorityValue);
+
+        await taskRepository.UpdateAsync(task);
+        await taskRepository.SaveChangesAsync();
+    }
+
+    public async Task CompleteAllTasksAsync(Guid projectId)
+    {
+        var tasks = (await taskRepository.GetTasksByProjectIdAsync(projectId)).ToList();
+
+        if (!tasks.Any())
+            throw new DomainException("No hay tareas para completar en este proyecto.");
+
+        foreach (var task in tasks.Where(t => !t.IsCompleted))
+        {
+            task.Complete();
         }
 
         await taskRepository.SaveChangesAsync();

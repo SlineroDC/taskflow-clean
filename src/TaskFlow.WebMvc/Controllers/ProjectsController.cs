@@ -34,7 +34,6 @@ public class ProjectsController : Controller
         {
             var userId = GetCurrentUserId();
             var projects = await _projectService.GetProjectsAsync(userId);
-            ViewData["ShowNewProjectBtn"] = true;
             return View(projects);
         }
         catch (UnauthorizedAccessException)
@@ -134,6 +133,21 @@ public class ProjectsController : Controller
             TempData["ErrorMessage"] = ex.Message;
         }
 
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Complete(Guid id)
+    {
+        try
+        {
+            await _projectService.CompleteProjectAsync(id); // Tu servicio validará que no haya tareas pendientes
+            TempData["SuccessMessage"] = "¡Felicidades! Sprint completado con éxito.";
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
         return RedirectToAction(nameof(Index));
     }
 }
