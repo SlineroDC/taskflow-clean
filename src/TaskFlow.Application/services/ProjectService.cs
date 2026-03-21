@@ -1,6 +1,7 @@
 using TaskFlow.Application.DTOs;
 using TaskFlow.Application.Interfaces;
 using TaskFlow.Domain.Entities;
+using TaskFlow.Domain.Enums;
 using TaskFlow.Domain.Exceptions;
 
 namespace TaskFlow.Application.Services;
@@ -115,10 +116,19 @@ public class ProjectService(IProjectRepository projectRepository, IUserRepositor
     public async Task CompleteProjectAsync(Guid projectId)
     {
         var project =
-            await projectRepository.GetByIdAsync(projectId, includeTasks: true)
+            await projectRepository.GetByIdAsync(projectId)
             ?? throw new DomainException("Proyecto no encontrado.");
 
-        project.Complete();
+        if (project.Tasks != null && project.Tasks.Any(t => !t.IsCompleted && !t.IsDeleted))
+        {
+            throw new DomainException(
+                "No puedes completar el proyecto, aún hay tareas pendientes."
+            );
+        }
+
+        project.SetStatus(ProjectStatus.Completed);
+
+        await projectRepository.UpdateAsync(project);
         await projectRepository.SaveChangesAsync();
     }
 

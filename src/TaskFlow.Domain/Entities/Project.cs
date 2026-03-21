@@ -44,4 +44,10 @@ public class Project
     {
         IsDeleted = true;
     }
+
+    // Añade esto dentro de tu clase Project:
+    public void SetStatus(ProjectStatus newStatus)
+    {
+        Status = newStatus;
+    }
 }

@@ -4,29 +4,31 @@
     ViewData["BodyClass"] = "bg-background text-on-background font-body selection:bg-primary selection:text-on-primary-container overflow-x-hidden";
 }
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-[#060e1f]/80 backdrop-blur-xl flex justify-between items-center h-16 px-8 transition-all">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-[#060e1f]/80 backdrop-blur-xl flex justify-between items-center h-16 px-4 md:px-8 transition-all">
     <div class="flex items-center gap-2">
-        <img src="~/images/logo.png" alt="TaskFlow" class="w-8 h-8">
-        <div class="text-2xl font-black text-primary uppercase tracking-widest">TaskFlow</div>
+        <img src="~/images/logo.png" alt="TaskFlow" class="w-8 h-8 shrink-0">
+        <div class="hidden sm:block text-xl md:text-2xl font-black text-primary uppercase tracking-widest">TaskFlow</div>
     </div>
     <div class="hidden md:flex items-center gap-8 font-manrope font-medium text-sm">
         <a asp-controller="Home" asp-action="Docs" class="text-on-background font-bold border-b-2 border-primary pb-1">Docs</a>
         <a class="text-on-background/70 hover:text-on-background transition-colors duration-300" href="#">Community</a>
         <a class="text-on-background/70 hover:text-on-background transition-colors duration-300" href="#">Updates</a>
     </div>
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 md:gap-4">
         @if (User.Identity is { IsAuthenticated: true })
         {
-            <a asp-controller="Projects" asp-action="Index" class="bg-primary text-on-primary-container px-5 py-2 rounded font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all active:scale-95 flex items-center gap-2">
-                Ir al Dashboard <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            <a asp-controller="Projects" asp-action="Index" class="bg-primary text-on-primary-container px-3 md:px-5 py-2 rounded font-bold text-[10px] md:text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all active:scale-95 flex items-center gap-1 md:gap-2 whitespace-nowrap">
+                <span class="hidden sm:inline">Ir al Dashboard</span>
+                <span class="sm:hidden">Dashboard</span> 
+                <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_forward</span>
             </a>
         }
         else
         {
-            <a asp-controller="Auth" asp-action="Login" class="text-sm font-bold text-on-background hover:text-primary transition-colors px-3 py-2">
+            <a asp-controller="Auth" asp-action="Login" class="text-xs md:text-sm font-bold text-on-background hover:text-primary transition-colors px-2 md:px-3 py-2 whitespace-nowrap">
                 Iniciar Sesión
             </a>
-            <a asp-controller="Auth" asp-action="Register" class="bg-primary text-on-primary-container px-5 py-2 rounded font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all active:scale-95">
+            <a asp-controller="Auth" asp-action="Register" class="bg-primary text-on-primary-container px-3 md:px-5 py-2 rounded font-bold text-[10px] md:text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all active:scale-95 whitespace-nowrap">
                 Registrarse
             </a>
         }
@@ -34,44 +36,44 @@
 </nav>
 
 <main class="relative pt-16">
-    <div class="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary/10 kinetic-blob rounded-full"></div>
-    <div class="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-secondary-container/20 kinetic-blob rounded-full"></div>
+    <div class="absolute top-[-10%] left-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/10 kinetic-blob rounded-full"></div>
+    <div class="absolute top-[20%] right-[-10%] w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-secondary-container/20 kinetic-blob rounded-full"></div>
     
-    <section class="max-w-7xl mx-auto px-8 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-8">
+    <section class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-center lg:text-left">
+        <div class="lg:col-span-7 space-y-6 md:space-y-8">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/15">
                 <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                 <span class="text-[0.6875rem] font-bold uppercase tracking-widest text-on-surface-variant">Kinetic Academy v2.0</span>
             </div>
-            <h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-on-background">
+            <h1 class="font-headline text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] text-on-background">
                 Domina el flujo de tu trabajo con <span class="text-transparent bg-clip-text bg-gradient-to-br from-primary to-primary-container">TaskFlow</span>
             </h1>
-            <p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
+            <p class="text-base md:text-xl text-on-surface-variant max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 La plataforma definitiva para equipos de alto rendimiento que buscan transformar la gestión de proyectos en una ventaja competitiva.
             </p>
-            <div class="flex flex-wrap gap-4 pt-4">
+            <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                 @if (User.Identity is { IsAuthenticated: true })
                 {
-                    <a asp-controller="Projects" asp-action="Index" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(152,202,63,0.5)] hover:scale-105 transition-all active:scale-95">
+                    <a asp-controller="Projects" asp-action="Index" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold text-base md:text-lg hover:shadow-[0_0_30px_rgba(152,202,63,0.5)] hover:scale-105 transition-all active:scale-95 w-full sm:w-auto">
                         Ir a mis proyectos
                     </a>
                 }
                 else
                 {
-                    <a asp-controller="Auth" asp-action="Login" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(152,202,63,0.5)] hover:scale-105 transition-all active:scale-95">
+                    <a asp-controller="Auth" asp-action="Login" class="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold text-base md:text-lg hover:shadow-[0_0_30px_rgba(152,202,63,0.5)] hover:scale-105 transition-all active:scale-95 w-full sm:w-auto">
                         Comienza ahora
                     </a>
                 }
-                <button class="px-8 py-4 rounded-lg font-bold text-lg text-primary border border-outline-variant/30 hover:bg-primary/5 transition-all">
+                <button class="px-8 py-4 rounded-lg font-bold text-base md:text-lg text-primary border border-outline-variant/30 hover:bg-primary/5 transition-all w-full sm:w-auto">
                     Ver demo
                 </button>
             </div>
         </div>
-        <div class="lg:col-span-5 relative group">
+        <div class="lg:col-span-5 relative group mt-8 lg:mt-0">
             <div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary-container rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            <div class="relative glass-panel border border-outline-variant/15 rounded-xl overflow-hidden aspect-square flex items-center justify-center p-8">
+            <div class="relative glass-panel border border-outline-variant/15 rounded-xl overflow-hidden aspect-square flex items-center justify-center p-4 md:p-8">
                 <img alt="Dashboard Preview" class="w-full h-full object-cover rounded-lg opacity-80 group-hover:opacity-100 transition-opacity" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80">
-                <div class="absolute bottom-4 left-4 right-4 h-24 bg-surface-container-lowest/80 rounded border border-outline-variant/10 p-4">
+                <div class="absolute bottom-4 left-4 right-4 h-20 md:h-24 bg-surface-container-lowest/80 rounded border border-outline-variant/10 p-4 backdrop-blur-sm">
                     <div class="flex gap-2 mb-2">
                         <div class="h-2 w-12 bg-primary/40 rounded"></div>
                         <div class="h-2 w-8 bg-outline-variant/40 rounded"></div>
@@ -84,55 +86,55 @@
         </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-8 py-24 space-y-12">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div class="max-w-2xl">
+    <section class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24 space-y-8 md:space-y-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 text-center md:text-left">
+            <div class="max-w-2xl mx-auto md:mx-0">
                 <h2 class="font-headline text-3xl md:text-5xl font-bold tracking-tight text-on-background">
                     Diseñado para la <span class="italic text-primary-dim">velocidad</span> mental.
                 </h2>
             </div>
-            <p class="text-on-surface-variant font-medium md:max-w-xs">
+            <p class="text-on-surface-variant font-medium md:max-w-xs mx-auto md:mx-0 text-sm md:text-base">
                 Herramientas modulares que se adaptan a tu proceso, no al revés.
             </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-surface-container hover:bg-surface-container-high transition-colors p-10 rounded-xl group relative overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div class="bg-surface-container hover:bg-surface-container-high transition-colors p-8 md:p-10 rounded-xl group relative overflow-hidden text-center md:text-left">
                 <div class="absolute top-0 left-0 w-1 h-0 bg-primary group-hover:h-full transition-all duration-300"></div>
-                <div class="mb-8 w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-primary text-4xl">account_tree</span>
+                <div class="mb-6 md:mb-8 w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto md:mx-0">
+                    <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">account_tree</span>
                 </div>
-                <h3 class="font-headline text-2xl font-bold mb-4 text-on-surface">Organización</h3>
-                <p class="text-on-surface-variant leading-relaxed">Jerarquías visuales y anidamiento infinito para proyectos que crecen contigo. Sin límites.</p>
+                <h3 class="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 text-on-surface">Organización</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">Jerarquías visuales y anidamiento infinito para proyectos que crecen contigo. Sin límites.</p>
             </div>
-            <div class="bg-surface-container hover:bg-surface-container-high transition-colors p-10 rounded-xl group relative overflow-hidden">
+            <div class="bg-surface-container hover:bg-surface-container-high transition-colors p-8 md:p-10 rounded-xl group relative overflow-hidden text-center md:text-left">
                 <div class="absolute top-0 left-0 w-1 h-0 bg-primary group-hover:h-full transition-all duration-300"></div>
-                <div class="mb-8 w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-primary text-4xl">bolt</span>
+                <div class="mb-6 md:mb-8 w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto md:mx-0">
+                    <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">bolt</span>
                 </div>
-                <h3 class="font-headline text-2xl font-bold mb-4 text-on-surface">Gestión</h3>
-                <p class="text-on-surface-variant leading-relaxed">Automatizaciones de "un solo clic" que eliminan las tareas repetitivas de tu calendario diario.</p>
+                <h3 class="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 text-on-surface">Gestión</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">Automatizaciones de "un solo clic" que eliminan las tareas repetitivas de tu calendario diario.</p>
             </div>
-            <div class="bg-surface-container hover:bg-surface-container-high transition-colors p-10 rounded-xl group relative overflow-hidden">
+            <div class="bg-surface-container hover:bg-surface-container-high transition-colors p-8 md:p-10 rounded-xl group relative overflow-hidden text-center md:text-left">
                 <div class="absolute top-0 left-0 w-1 h-0 bg-primary group-hover:h-full transition-all duration-300"></div>
-                <div class="mb-8 w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-primary text-4xl">monitoring</span>
+                <div class="mb-6 md:mb-8 w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto md:mx-0">
+                    <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">monitoring</span>
                 </div>
-                <h3 class="font-headline text-2xl font-bold mb-4 text-on-surface">Métricas</h3>
-                <p class="text-on-surface-variant leading-relaxed">Análisis de rendimiento en tiempo real para identificar cuellos de botella antes de que ocurran.</p>
+                <h3 class="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 text-on-surface">Métricas</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">Análisis de rendimiento en tiempo real para identificar cuellos de botella antes de que ocurran.</p>
             </div>
         </div>
     </section>
 
-    <section class="py-24 relative">
-        <div class="absolute inset-0 bg-surface-container-low -skew-y-3 z-0"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1 space-y-8">
-                <div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant/10 shadow-xl">
+    <section class="py-16 md:py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-surface-container-low -skew-y-3 z-0 origin-bottom-left"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+            <div class="order-2 lg:order-1 space-y-8 mt-8 lg:mt-0">
+                <div class="bg-surface-container-lowest p-6 md:p-8 rounded-lg border border-outline-variant/10 shadow-xl max-w-md mx-auto lg:mx-0">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-10 h-10 rounded-full bg-secondary-container"></div>
-                        <div>
-                            <div class="h-3 w-32 bg-on-surface/20 rounded mb-2"></div>
-                            <div class="h-2 w-20 bg-on-surface/10 rounded"></div>
+                        <div class="w-10 h-10 rounded-full bg-secondary-container shrink-0"></div>
+                        <div class="flex-1">
+                            <div class="h-3 w-3/4 bg-on-surface/20 rounded mb-2"></div>
+                            <div class="h-2 w-1/2 bg-on-surface/10 rounded"></div>
                         </div>
                     </div>
                     <div class="space-y-4">
@@ -142,33 +144,33 @@
                     </div>
                 </div>
             </div>
-            <div class="order-1 lg:order-2 space-y-6">
-                <h2 class="font-headline text-4xl font-extrabold text-on-background leading-tight">La experiencia "Developer-First" que tu equipo merece.</h2>
-                <p class="text-on-surface-variant text-lg">Olvídate de las interfaces lentas. TaskFlow está construido sobre una arquitectura de baja latencia diseñada para la respuesta instantánea.</p>
-                <ul class="space-y-4">
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-xl">check_circle</span><span class="text-on-surface font-medium">Sincronización en la nube ultra-rápida</span></li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-xl">check_circle</span><span class="text-on-surface font-medium">Atajos de teclado personalizables</span></li>
-                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-xl">check_circle</span><span class="text-on-surface font-medium">API abierta para integraciones profundas</span></li>
+            <div class="order-1 lg:order-2 space-y-4 md:space-y-6 text-center lg:text-left">
+                <h2 class="font-headline text-3xl md:text-4xl font-extrabold text-on-background leading-tight">La experiencia "Developer-First" que tu equipo merece.</h2>
+                <p class="text-on-surface-variant text-base md:text-lg">Olvídate de las interfaces lentas. TaskFlow está construido sobre una arquitectura de baja latencia diseñada para la respuesta instantánea.</p>
+                <ul class="space-y-3 md:space-y-4 inline-block text-left">
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-xl shrink-0">check_circle</span><span class="text-on-surface font-medium text-sm md:text-base">Sincronización en la nube ultra-rápida</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-xl shrink-0">check_circle</span><span class="text-on-surface font-medium text-sm md:text-base">Atajos de teclado personalizables</span></li>
+                    <li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-xl shrink-0">check_circle</span><span class="text-on-surface font-medium text-sm md:text-base">API abierta para integraciones profundas</span></li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <section class="max-w-5xl mx-auto px-8 py-32 text-center">
-        <div class="glass-panel p-16 rounded-3xl border border-primary/20 space-y-8 relative overflow-hidden">
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 kinetic-blob rounded-full"></div>
-            <h2 class="font-headline text-4xl md:text-5xl font-black text-on-background">¿Listo para elevar tu productividad?</h2>
-            <p class="text-on-surface-variant max-w-xl mx-auto text-lg">Únete a más de 50,000 profesionales que ya están optimizando su tiempo con la metodología TaskFlow.</p>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+    <section class="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-32 text-center">
+        <div class="glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 space-y-6 md:space-y-8 relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 md:-top-24 md:-right-24 w-32 h-32 md:w-64 md:h-64 bg-primary/20 kinetic-blob rounded-full"></div>
+            <h2 class="font-headline text-3xl md:text-5xl font-black text-on-background relative z-10">¿Listo para elevar tu productividad?</h2>
+            <p class="text-on-surface-variant max-w-xl mx-auto text-base md:text-lg relative z-10">Únete a más de 50,000 profesionales que ya están optimizando su tiempo con la metodología TaskFlow.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 relative z-10">
                 @if (User.Identity is { IsAuthenticated: true })
                 {
-                    <a asp-controller="Projects" asp-action="Index" class="w-full md:w-auto bg-primary text-on-primary-container px-10 py-5 rounded-xl font-bold text-xl hover:shadow-[0_0_40px_rgba(152,202,63,0.6)] hover:scale-105 transition-all">
+                    <a asp-controller="Projects" asp-action="Index" class="w-full md:w-auto bg-primary text-on-primary-container px-6 md:px-10 py-4 md:py-5 rounded-xl font-bold text-lg md:text-xl hover:shadow-[0_0_40px_rgba(152,202,63,0.6)] hover:scale-105 transition-all">
                         Continuar en el Dashboard
                     </a>
                 }
                 else
                 {
-                    <a asp-controller="Auth" asp-action="Login" class="w-full md:w-auto bg-primary text-on-primary-container px-10 py-5 rounded-xl font-bold text-xl hover:shadow-[0_0_40px_rgba(152,202,63,0.6)] hover:scale-105 transition-all">
+                    <a asp-controller="Auth" asp-action="Login" class="w-full md:w-auto bg-primary text-on-primary-container px-6 md:px-10 py-4 md:py-5 rounded-xl font-bold text-lg md:text-xl hover:shadow-[0_0_40px_rgba(152,202,63,0.6)] hover:scale-105 transition-all">
                         Empieza Gratis Hoy
                     </a>
                 }
@@ -177,20 +179,20 @@
     </section>
 </main>
 
-<footer class="bg-surface py-12 border-t border-outline-variant/15">
-    <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-        <div class="flex flex-col items-center md:items-start gap-4">
-            <span class="text-primary font-bold text-xl uppercase tracking-widest">TaskFlow</span>
-            <p class="font-inter text-xs text-on-background/40">© 2026 TaskFlow Kinetic Academy. All rights reserved.</p>
+<footer class="bg-surface py-8 md:py-12 border-t border-outline-variant/15">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8 text-center md:text-left">
+        <div class="flex flex-col items-center md:items-start gap-2 md:gap-4">
+            <span class="text-primary font-bold text-lg md:text-xl uppercase tracking-widest">TaskFlow</span>
+            <p class="font-inter text-[10px] md:text-xs text-on-background/40">© 2026 TaskFlow Kinetic Academy. All rights reserved.</p>
         </div>
-        <div class="flex gap-8">
+        <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8">
             <a asp-controller="Home" asp-action="Terms" class="font-inter text-xs text-on-background/40 hover:text-primary transition-colors">Privacy Policy</a>
             <a asp-controller="Home" asp-action="Terms" class="font-inter text-xs text-on-background/40 hover:text-primary transition-colors">Terms of Service</a>
             <a asp-controller="Home" asp-action="Security" class="font-inter text-xs text-on-background/40 hover:text-primary transition-colors">Security</a>
         </div>  
         <div class="flex gap-4">
-            <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">public</button>
-            <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">help</button>
+            <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-xl md:text-2xl">public</button>
+            <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-xl md:text-2xl">help</button>
         </div>
     </div>
 </footer>

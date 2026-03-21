@@ -18,6 +18,13 @@ public class TaskService(ITaskItemRepository taskRepository, IProjectRepository 
         if (project.Status == ProjectStatus.Completed)
             throw new DomainException("No se pueden agregar tareas a un proyecto completado.");
 
+        // cambio de Draft a Active
+        if (project.Status == ProjectStatus.Draft)
+        {
+            project.SetStatus(ProjectStatus.Active);
+            await projectRepository.UpdateAsync(project);
+        }
+
         int nextOrder = await taskRepository.GetNextTaskOrderAsync(projectId);
         var priority = (TaskPriority)dto.PriorityValue;
 

@@ -33,7 +33,7 @@
                         "on-surface-variant": "#94a3b8",
                         "outline": "#475569",
                         "outline-variant": "#334155",
-                        "primary": "#98CA3F", /* Tu Verde Neón */
+                        "primary": "#98CA3F",
                         "on-primary": "#000000",
                         "primary-container": "#203a11",
                         "on-primary-container": "#bcf161",
@@ -70,17 +70,36 @@
     
     <partial name="_Sidebar" />
 
-    <div class="ml-64 flex flex-col min-h-screen relative overflow-hidden z-0 bg-background">
+    <div class="md:ml-64 flex flex-col min-h-screen relative overflow-hidden z-0 bg-background transition-all duration-300">
         
         <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
         <div class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
         <partial name="_Topbar" />
 
-        <main class="flex-1 p-8 relative z-10 overflow-x-hidden">
+        <main class="flex-1 p-4 md:p-8 relative z-10 overflow-x-hidden">
             @RenderBody()
         </main>
     </div>
+
+    <div id="mobileOverlay" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 hidden md:hidden opacity-0 transition-opacity duration-300" onclick="toggleSidebar()"></div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('app-sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            
+            sidebar.classList.toggle('-translate-x-full');
+            
+            if (sidebar.classList.contains('-translate-x-full')) {
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            } else {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            }
+        }
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

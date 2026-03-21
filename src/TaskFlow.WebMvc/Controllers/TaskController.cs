@@ -89,7 +89,7 @@ public class TasksController : Controller
     public async Task<IActionResult> CompleteAll(Guid projectId)
     {
         // Lógica en tu servicio para buscar las tareas pendientes de este proyecto y marcarlas en true
-         await _taskService.CompleteAllTasksAsync(projectId);
+        await _taskService.CompleteAllTasksAsync(projectId);
         TempData["SuccessMessage"] = "Todas las tareas fueron completadas.";
         return RedirectToAction("Details", "Projects", new { id = projectId });
     }
