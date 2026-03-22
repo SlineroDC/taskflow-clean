@@ -8,4 +8,5 @@ public interface IAuthService
     Task<User> RegisterAsync(RegisterDto dto);
     Task<User> LoginAsync(LoginDto dto);
     Task ChangePasswordAsync(Guid userId, ChangePasswordDto dto);
+    Task<User> HandleExternalLoginAsync(string email, string name);
 }

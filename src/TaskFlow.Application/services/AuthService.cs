@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using BCrypt.Net;
 using TaskFlow.Application.DTOs;
 using TaskFlow.Application.Interfaces;
@@ -65,5 +67,27 @@ public class AuthService(IUserRepository userRepository) : IAuthService
 
         // 5. Persistir los cambios en la base de datos
         await userRepository.SaveChangesAsync();
+    }
+
+    // --- NUEVO MÉTODO PARA GOOGLE LOGIN ---
+    public async Task<User> HandleExternalLoginAsync(string email, string name)
+    {
+        // 1. Buscamos si el usuario ya existe por su correo
+        var user = await userRepository.GetByEmailAsync(email);
+
+        // 2. Si no existe, lo creamos automáticamente
+        if (user == null)
+        {
+            var randomPassword = Guid.NewGuid().ToString("N") + "Aa1@";
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(randomPassword);
+
+            user = new User(name, email, hashedPassword);
+
+            await userRepository.AddAsync(user);
+            await userRepository.SaveChangesAsync();
+        }
+
+        // 3. Devolvemos el usuario (nuevo o existente) para que el Controlador arme la Cookie
+        return user;
     }
 }
