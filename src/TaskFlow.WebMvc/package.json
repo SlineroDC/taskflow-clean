@@ -1,0 +1,21 @@
+{
+  "name": "taskflow.webmvc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch:css": "tailwindcss -i ./wwwroot/css/app.css -o ./wwwroot/css/tailwind.min.css --watch",
+    "build:css": "tailwindcss -i ./wwwroot/css/app.css -o ./wwwroot/css/tailwind.min.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/manrope": "^5.2.8",
+    "material-symbols": "^0.42.3"
+  }
+}

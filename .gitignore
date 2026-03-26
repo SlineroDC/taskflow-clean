@@ -54,3 +54,16 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# dist/
+# build/
+
+# ==============================
+# OS Files
+# ==============================
+.DS_Store
+Thumbs.db

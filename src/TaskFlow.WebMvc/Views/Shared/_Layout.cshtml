@@ -6,46 +6,7 @@
     <title>@ViewData["Title"] - TaskFlow</title>
     
     <link rel="icon" type="x-ico" href="~/favicon.ico" />
-    
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    fontFamily: {
-                        headline: ['Manrope', 'sans-serif'],
-                        body: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        "background": "#060e1f",
-                        "on-background": "#dee5ff",
-                        "surface": "#0f172a",
-                        "surface-container-lowest": "#0b1222",
-                        "surface-container-low": "#111a2f",
-                        "surface-container": "#15203b",
-                        "surface-container-high": "#1b2746",
-                        "surface-container-highest": "#223054",
-                        "on-surface": "#e2e8f0",
-                        "on-surface-variant": "#94a3b8",
-                        "outline": "#475569",
-                        "outline-variant": "#334155",
-                        "primary": "#98CA3F",
-                        "on-primary": "#000000",
-                        "primary-container": "#203a11",
-                        "on-primary-container": "#bcf161",
-                        "secondary-container": "#223547",
-                        "error": "#ffb4ab",
-                        "tertiary-dim": "#f0e04a",
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <link rel="stylesheet" href="~/css/tailwind.min.css" asp-append-version="true" />
     <style>
         body {
             background-color: #060e1f;
