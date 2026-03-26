@@ -1,56 +1,35 @@
 <!DOCTYPE html>
-<html class="dark" lang="es">
+<html lang="es" class="h-full">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - TaskFlow</title>
     
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/css/tailwind.min.css" asp-append-version="true" />
     
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "outline": "#6d758b", "tertiary-dim": "#f0e04a", "background": "#060e1f",
-                        "surface-bright": "#1f2b48", "error-container": "#b92902", "on-background": "#dee5ff",
-                        "on-secondary-container": "#f8ff90", "surface-container-high": "#141f37",
-                        "inverse-primary": "#486900", "secondary-fixed-dim": "#d4dd51", "primary-fixed": "#bcf161",
-                        "on-primary-fixed": "#2d4400", "secondary": "#e2eb5d", "on-primary-fixed-variant": "#436300",
-                        "tertiary": "#fff9e6", "on-primary-container": "#182700", "inverse-surface": "#faf8ff",
-                        "error": "#ff7351", "surface": "#060e1f", "on-secondary-fixed-variant": "#5b6000",
-                        "surface-container-highest": "#1a253f", "on-error": "#450900", "on-tertiary-fixed-variant": "#6b6200",
-                        "on-secondary": "#515600", "surface-container-low": "#0a1327", "primary": "#bcf161",
-                        "on-tertiary-container": "#605800", "on-surface-variant": "#a3abc3", "error-dim": "#d53d18",
-                        "secondary-fixed": "#e2eb5d", "primary-dim": "#aee254", "inverse-on-surface": "#4d556a",
-                        "secondary-dim": "#d4dd51", "surface-tint": "#bcf161", "on-surface": "#dee5ff",
-                        "on-tertiary": "#696000", "tertiary-container": "#ffee57", "primary-fixed-dim": "#aee254",
-                        "secondary-container": "#5d6300", "surface-dim": "#060e1f", "tertiary-fixed": "#ffee57",
-                        "on-tertiary-fixed": "#4c4500", "surface-variant": "#1a253f", "on-primary": "#3c5800",
-                        "surface-container-lowest": "#000000", "on-error-container": "#ffd2c8", "surface-container": "#0f192f",
-                        "tertiary-fixed-dim": "#f0e04a", "outline-variant": "#40485c", "primary-container": "#7faf25",
-                        "on-secondary-fixed": "#3f4300"
-                    },
-                    fontFamily: {
-                        "headline": ["Manrope"], "body": ["Inter"], "label": ["Inter"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
-                },
-            },
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
         }
     </script>
+    
     <style>
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .glass-panel, .glass-effect { background: rgba(26, 37, 63, 0.6); backdrop-filter: blur(20px); }
         .kinetic-blob { filter: blur(80px); z-index: -1; }
-        .text-glow { text-shadow: 0 0 15px rgba(188, 241, 97, 0.4); }
     </style>
 </head>
-<body class="@ViewData["BodyClass"]">
+<body class="h-full antialiased bg-slate-50 text-slate-900 dark:bg-background dark:text-[#dee5ff] selection:bg-primary selection:text-black transition-colors duration-300">
+    
     @RenderBody()
+    
     <partial name="_Notifications" />
+    
+    <script src="~/js/app.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

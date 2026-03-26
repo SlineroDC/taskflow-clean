@@ -1,40 +1,34 @@
 ﻿<!DOCTYPE html>
-<html lang="es" class="h-full dark">
-<head>
+<html lang="es" class="h-full"> <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TaskFlow</title>
     
-    <link rel="icon" type="x-ico" href="~/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/css/tailwind.min.css" asp-append-version="true" />
+    
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <style>
-        body {
-            background-color: #060e1f;
-            color: #dee5ff;
-            font-family: 'Inter', sans-serif;
-        }
-        /* Custom Scrollbar minimalista para los sidebars/modals */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #334155;
-            border-radius: 10px;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #94a3b8; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; }
     </style>
 </head>
-<body class="h-full antialiased bg-slate-50 text-slate-900 dark:bg-background dark:text-[#dee5ff] selection:bg-primary selection:text-black transition-colors duration-300">>
+<body class="h-full antialiased bg-slate-50 text-slate-900 dark:bg-background dark:text-[#dee5ff] selection:bg-primary selection:text-black transition-colors duration-300">
     
     <partial name="_Sidebar" />
 
-    <div class="md:ml-64 flex flex-col min-h-screen relative overflow-hidden z-0 bg-background transition-all duration-300">
-        
-        <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
-        <div class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+    <div class="md:ml-64 flex flex-col min-h-screen relative overflow-hidden z-0 transition-all duration-300">
+        <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-primary/20 dark:bg-primary/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary-container/30 dark:bg-secondary-container/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
         <partial name="_Topbar" />
 
@@ -43,27 +37,13 @@
         </main>
     </div>
 
-    <div id="mobileOverlay" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 hidden md:hidden opacity-0 transition-opacity duration-300" onclick="toggleSidebar()"></div>
+    <div id="mobileOverlay" class="fixed inset-0 bg-slate-900/50 dark:bg-background/80 backdrop-blur-sm z-30 hidden md:hidden opacity-0 transition-opacity duration-300" onclick="toggleSidebar()"></div>
 
     <partial name="_Notifications" />
     
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('app-sidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            
-            sidebar.classList.toggle('-translate-x-full');
-            
-            if (sidebar.classList.contains('-translate-x-full')) {
-                overlay.classList.remove('opacity-100');
-                setTimeout(() => overlay.classList.add('hidden'), 300);
-            } else {
-                overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.add('opacity-100'), 10);
-            }
-        }
-    </script>
-
+    <script src="~/js/app.js" asp-append-version="true"></script>
+    <script src="~/js/projects.js" asp-append-version="true"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

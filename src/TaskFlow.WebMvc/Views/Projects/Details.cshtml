@@ -9,8 +9,8 @@
 
 <div class="max-w-5xl mx-auto pb-16 space-y-8 relative">
     
-    <header class="bg-surface-container rounded-3xl p-8 border border-outline-variant/10 shadow-lg relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+    <header class="bg-white dark:bg-surface-container rounded-3xl p-8 border border-slate-200 dark:border-outline-variant/10 shadow-sm dark:shadow-lg relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 dark:bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
         
         <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
@@ -18,21 +18,21 @@
                     <span class="px-3 py-1 rounded-full bg-primary/20 text-primary border border-primary/20 text-xs font-bold uppercase tracking-wider flex items-center gap-1">
                         <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> @Model.Status
                     </span>
-                    <span class="text-on-surface-variant text-sm font-mono tracking-widest">ID: @Model.Id.ToString().Substring(0,8)</span>
+                    <span class="text-slate-500 dark:text-on-surface-variant text-sm font-mono tracking-widest">ID: @Model.Id.ToString().Substring(0,8)</span>
                 </div>
-                <h1 class="text-4xl font-headline font-extrabold text-on-surface mb-2">@Model.Name</h1>
-                <p class="text-on-surface-variant max-w-2xl leading-relaxed">@Model.Description</p>
+                <h1 class="text-4xl font-headline font-extrabold text-slate-900 dark:text-on-surface mb-2">@Model.Name</h1>
+                <p class="text-slate-500 dark:text-on-surface-variant max-w-2xl leading-relaxed">@Model.Description</p>
             </div>
             
             <div class="flex items-center gap-3 shrink-0">
-                <a asp-action="Index" class="px-5 py-2.5 rounded-lg border border-outline-variant/30 text-on-surface-variant font-bold text-sm hover:bg-surface-container-high transition-all flex items-center gap-2">
+                <a asp-action="Index" class="px-5 py-2.5 rounded-lg border border-slate-300 dark:border-outline-variant/30 text-slate-600 dark:text-on-surface-variant font-bold text-sm hover:bg-slate-50 dark:hover:bg-surface-container-high transition-all flex items-center gap-2">
                     <span class="material-symbols-outlined text-[18px]">arrow_back</span> Volver
                 </a>
                 
                 <form asp-controller="Projects" asp-action="Complete" method="post" class="shrink-0">
                     <input type="hidden" name="id" value="@Model.Id" />
                     <button type="submit" 
-                            class="px-5 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2 @(progress == 100 ? "bg-primary text-on-primary-container hover:shadow-lg hover:scale-105" : "bg-surface-container-high text-on-surface-variant cursor-not-allowed opacity-50")"
+                            class="px-5 py-2.5 rounded-lg font-bold text-sm transition-all flex items-center gap-2 @(progress == 100 ? "bg-primary text-slate-900 dark:text-on-primary-container hover:shadow-lg hover:scale-105" : "bg-slate-100 dark:bg-surface-container-high text-slate-400 dark:text-on-surface-variant cursor-not-allowed opacity-50")"
                             @(progress != 100 ? "disabled" : "")
                             title="@(progress != 100 ? "Debes completar todas las tareas primero" : "Completar Proyecto")">
                         <span class="material-symbols-outlined text-[18px]">done_all</span> Completar Sprint
@@ -41,23 +41,23 @@
             </div>
         </div>
         
-        <div class="mt-8 pt-8 border-t border-outline-variant/10">
+        <div class="mt-8 pt-8 border-t border-slate-100 dark:border-outline-variant/10">
             <div class="flex justify-between items-end mb-3">
                 <div class="flex gap-8">
                     <div>
-                        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Tareas Activas</p>
-                        <p class="text-2xl font-bold text-on-surface">@Model.PendingTasks</p>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 dark:text-on-surface-variant mb-1">Tareas Activas</p>
+                        <p class="text-2xl font-bold text-slate-900 dark:text-on-surface">@Model.PendingTasks</p>
                     </div>
                     <div>
-                        <p class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Completadas</p>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 dark:text-on-surface-variant mb-1">Completadas</p>
                         <p class="text-2xl font-bold text-primary">@Model.CompletedTasks</p>
                     </div>
                 </div>
                 <div class="text-right">
-                    <span class="text-3xl font-headline font-black text-on-surface">@progress%</span>
+                    <span class="text-3xl font-headline font-black text-slate-900 dark:text-on-surface">@progress%</span>
                 </div>
             </div>
-            <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden border border-outline-variant/5">
+            <div class="w-full bg-slate-100 dark:bg-surface-container-highest rounded-full h-2 overflow-hidden border border-slate-200 dark:border-outline-variant/5">
                 <div class="bg-primary h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(152,202,63,0.5)]" style="width: @progress%"></div>
             </div>
         </div>
@@ -78,20 +78,20 @@
         </div>
     }
 
-    <section class="bg-surface-container rounded-2xl border border-outline-variant/10 overflow-visible shadow-lg relative">
-        <div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low rounded-t-2xl relative z-30">
-            <h3 class="text-lg font-headline font-bold text-on-surface flex items-center gap-2">
+    <section class="bg-white dark:bg-surface-container rounded-2xl border border-slate-200 dark:border-outline-variant/10 overflow-visible shadow-sm dark:shadow-lg relative">
+        <div class="p-6 border-b border-slate-200 dark:border-outline-variant/10 flex justify-between items-center bg-slate-50 dark:bg-surface-container-low rounded-t-2xl relative z-30">
+            <h3 class="text-lg font-headline font-bold text-slate-900 dark:text-on-surface flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary">format_list_bulleted</span> Tareas del Sprint
             </h3>
         </div>
 
-        <div class="divide-y divide-outline-variant/5 relative z-20" id="taskList">
+        <div class="divide-y divide-slate-100 dark:divide-outline-variant/5 relative z-20" id="taskList">
             @if (!Model.Tasks.Any())
             {
                 <div class="p-12 text-center">
-                    <span class="material-symbols-outlined text-5xl text-on-surface-variant/30 mb-4">task</span>
-                    <p class="text-on-surface font-bold text-lg">El Backlog está vacío</p>
-                    <p class="text-on-surface-variant text-sm mt-1">Comienza añadiendo la primera tarea técnica para este proyecto.</p>
+                    <span class="material-symbols-outlined text-5xl text-slate-300 dark:text-on-surface-variant/30 mb-4">task</span>
+                    <p class="text-slate-900 dark:text-on-surface font-bold text-lg">El Backlog está vacío</p>
+                    <p class="text-slate-500 dark:text-on-surface-variant text-sm mt-1">Comienza añadiendo la primera tarea técnica para este proyecto.</p>
                 </div>
             }
             else
@@ -99,26 +99,26 @@
                 foreach (var task in Model.Tasks)
                 {
                     var priorityColor = task.Priority == "Urgent" ? "bg-error/10 text-error border-error/20" :
-                                        task.Priority == "High" ? "bg-orange-500/10 text-orange-400 border-orange-500/20" :
-                                        task.Priority == "Medium" ? "bg-blue-500/10 text-blue-400 border-blue-500/20" :
-                                        "bg-surface-container-highest text-on-surface-variant border-outline-variant/20";
+                                        task.Priority == "High" ? "bg-orange-500/10 text-orange-500 dark:text-orange-400 border-orange-500/20" :
+                                        task.Priority == "Medium" ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20" :
+                                        "bg-slate-100 dark:bg-surface-container-highest text-slate-500 dark:text-on-surface-variant border-slate-200 dark:border-outline-variant/20";
                     
-                    var textClass = task.IsCompleted ? "line-through text-on-surface-variant opacity-50" : "text-on-surface";
+                    var textClass = task.IsCompleted ? "line-through text-slate-400 dark:text-on-surface-variant opacity-50" : "text-slate-700 dark:text-on-surface";
 
-                    <div class="group flex items-center gap-4 p-4 hover:bg-surface-container-high transition-colors" data-task-id="@task.Id">
+                    <div class="group flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-surface-container-high transition-colors" data-task-id="@task.Id">
                         
-                        <span class="material-symbols-outlined text-outline-variant/30 cursor-grab hover:text-on-surface-variant active:cursor-grabbing">drag_indicator</span>
+                        <span class="material-symbols-outlined text-slate-300 dark:text-outline-variant/30 cursor-grab hover:text-slate-500 dark:hover:text-on-surface-variant active:cursor-grabbing">drag_indicator</span>
                         
                         @if (!task.IsCompleted)
                         {
                             <button type="button" onclick="openConfirmModal('¿Completar Tarea?', 'task_alt', 'Esta acción marcará la tarea como terminada en el Sprint.', '/Tasks/Complete', '@task.Id', 'Sí, completar')" 
-                                    class="w-6 h-6 shrink-0 rounded-full border-2 border-outline-variant/50 hover:border-primary flex items-center justify-center transition-colors">
+                                    class="w-6 h-6 shrink-0 rounded-full border-2 border-slate-300 dark:border-outline-variant/50 hover:border-primary flex items-center justify-center transition-colors">
                             </button>
                         }
                         else
                         {
                             <button type="button" onclick="openConfirmModal('¿Reabrir Tarea?', 'undo', 'Esta acción devolverá la tarea al estado de pendiente.', '/Tasks/Uncomplete', '@task.Id', 'Reabrir tarea')" 
-                                    class="w-6 h-6 shrink-0 rounded-full border-2 bg-primary border-primary text-background hover:bg-error hover:border-error flex items-center justify-center transition-colors group/check">
+                                    class="w-6 h-6 shrink-0 rounded-full border-2 bg-primary border-primary text-slate-900 hover:bg-error hover:border-error hover:text-white flex items-center justify-center transition-colors group/check">
                                 <span class="material-symbols-outlined text-[14px] font-bold group-hover/check:hidden">check</span>
                                 <span class="material-symbols-outlined text-[14px] font-bold hidden group-hover/check:block">close</span>
                             </button>
@@ -132,12 +132,12 @@
                         </div>
                         
                         <div class="relative group/menu shrink-0">
-                            <button type="button" class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded">
+                            <button type="button" class="text-slate-400 dark:text-on-surface-variant hover:text-primary transition-colors p-1 rounded">
                                 <span class="material-symbols-outlined text-[20px]">more_vert</span>
                             </button>
-                            <div class="absolute right-0 top-full mt-1 w-36 bg-surface-container-highest border border-outline-variant/20 rounded-lg shadow-xl opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all z-50 overflow-hidden">
+                            <div class="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-surface-container-highest border border-slate-200 dark:border-outline-variant/20 rounded-lg shadow-xl opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all z-50 overflow-hidden">
                                 
-                                <button type="button" data-id="@task.Id" data-title="@task.Title" data-priority="@task.Priority" onclick="handleEditClick(this)" class="w-full text-left px-4 py-2 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
+                                <button type="button" data-id="@task.Id" data-title="@task.Title" data-priority="@task.Priority" onclick="handleEditClick(this)" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-on-surface hover:text-primary hover:bg-slate-50 dark:hover:bg-surface-container-low transition-colors flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[16px]">edit</span> Editar
                                 </button>
                                 
@@ -152,8 +152,8 @@
             }
         </div>
 
-        <div class="p-4 bg-surface-container-high/30 border-t border-outline-variant/5 relative z-10 rounded-b-2xl space-y-3">
-            <button onclick="openTaskFormModal('add')" class="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-dashed border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all text-sm font-bold">
+        <div class="p-4 bg-slate-50/50 dark:bg-surface-container-high/30 border-t border-slate-100 dark:border-outline-variant/5 relative z-10 rounded-b-2xl space-y-3">
+            <button onclick="openTaskFormModal('add')" class="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-dashed border-slate-300 dark:border-outline-variant/30 text-slate-500 dark:text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/5 transition-all text-sm font-bold">
                 <span class="material-symbols-outlined text-lg">add</span> Añadir nueva tarea
             </button>
 
@@ -169,17 +169,17 @@
 </div>
 
 <div id="taskFormModal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-[#060e1f]/80 backdrop-blur-sm transition-opacity" onclick="closeTaskFormModal()"></div>
+    <div class="absolute inset-0 bg-slate-900/50 dark:bg-[#060e1f]/80 backdrop-blur-sm transition-opacity" onclick="closeTaskFormModal()"></div>
     <div class="flex items-center justify-center min-h-screen px-4">
-        <div class="relative bg-surface-container-low border border-outline-variant/20 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
+        <div class="relative bg-white dark:bg-surface-container-low border border-slate-200 dark:border-outline-variant/20 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
             <div id="taskFormHeaderBar" class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-container"></div>
             <div class="px-8 py-8 relative z-10">
                 <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-headline font-bold text-on-surface flex items-center gap-2">
+                    <h3 class="text-xl font-headline font-bold text-slate-900 dark:text-on-surface flex items-center gap-2">
                         <span id="taskFormIcon" class="material-symbols-outlined text-primary">add_task</span> 
                         <span id="taskFormTitle">Añadir Tarea</span>
                     </h3>
-                    <button type="button" onclick="closeTaskFormModal()" class="text-on-surface-variant hover:text-error">
+                    <button type="button" onclick="closeTaskFormModal()" class="text-slate-400 dark:text-on-surface-variant hover:text-error transition-colors">
                         <span class="material-symbols-outlined">close</span>
                     </button>
                 </div>
@@ -189,13 +189,13 @@
                     <input type="hidden" id="taskFormId" name="id" value="" />
                     
                     <div class="space-y-2">
-                        <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest">Título de la Tarea</label>
-                        <input id="taskFormTitleInput" name="Title" required type="text" class="w-full px-4 py-3 rounded-lg bg-surface-container border border-outline-variant/20 text-on-surface focus:ring-2 focus:ring-primary outline-none placeholder-on-surface-variant/30" />
+                        <label class="block text-xs font-bold text-slate-500 dark:text-on-surface-variant uppercase tracking-widest">Título de la Tarea</label>
+                        <input id="taskFormTitleInput" name="Title" required type="text" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-surface-container border border-slate-200 dark:border-outline-variant/20 text-slate-900 dark:text-on-surface focus:ring-2 focus:ring-primary outline-none placeholder-slate-400 dark:placeholder-on-surface-variant/30" />
                     </div>
                     
                     <div class="space-y-2">
-                        <label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest">Prioridad</label>
-                        <select id="taskFormPriority" name="PriorityValue" class="w-full px-4 py-3 rounded-lg bg-surface-container border border-outline-variant/20 text-on-surface focus:ring-2 focus:ring-primary outline-none appearance-none">
+                        <label class="block text-xs font-bold text-slate-500 dark:text-on-surface-variant uppercase tracking-widest">Prioridad</label>
+                        <select id="taskFormPriority" name="PriorityValue" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-surface-container border border-slate-200 dark:border-outline-variant/20 text-slate-900 dark:text-on-surface focus:ring-2 focus:ring-primary outline-none appearance-none">
                             <option value="0">Baja (Low)</option>
                             <option value="1">Media (Medium)</option>
                             <option value="2">Alta (High)</option>
@@ -203,9 +203,9 @@
                         </select>
                     </div>
 
-                    <div class="pt-6 flex gap-4 border-t border-outline-variant/10 mt-6">
-                        <button type="button" onclick="closeTaskFormModal()" class="flex-1 py-3 px-4 rounded-lg bg-surface-container-high text-on-surface font-bold text-sm hover:bg-surface-container-highest transition-all">Cancelar</button>
-                        <button type="submit" id="taskFormSubmitBtn" class="flex-1 py-3 px-4 rounded-lg bg-primary text-on-primary-container font-bold text-sm hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all">Guardar</button>
+                    <div class="pt-6 flex gap-4 border-t border-slate-100 dark:border-outline-variant/10 mt-6">
+                        <button type="button" onclick="closeTaskFormModal()" class="flex-1 py-3 px-4 rounded-lg bg-slate-100 dark:bg-surface-container-high text-slate-700 dark:text-on-surface font-bold text-sm hover:bg-slate-200 dark:hover:bg-surface-container-highest transition-all">Cancelar</button>
+                        <button type="submit" id="taskFormSubmitBtn" class="flex-1 py-3 px-4 rounded-lg bg-primary text-slate-900 font-bold text-sm hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -214,21 +214,21 @@
 </div>
 
 <div id="confirmModal" class="fixed inset-0 z-[100] hidden">
-    <div class="absolute inset-0 bg-[#060e1f]/80 backdrop-blur-sm transition-opacity" onclick="closeConfirmModal()"></div>
+    <div class="absolute inset-0 bg-slate-900/50 dark:bg-[#060e1f]/80 backdrop-blur-sm transition-opacity" onclick="closeConfirmModal()"></div>
     <div class="flex items-center justify-center min-h-screen px-4">
-        <div class="relative bg-surface-container-low border border-outline-variant/20 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden text-center p-8 z-10">
+        <div class="relative bg-white dark:bg-surface-container-low border border-slate-200 dark:border-outline-variant/20 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden text-center p-8 z-10">
             <div id="confirmModalIconContainer" class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-primary/30">
                 <span id="confirmModalIcon" class="material-symbols-outlined text-primary text-3xl">info</span>
             </div>
-            <h3 id="confirmModalTitle" class="text-xl font-headline font-bold text-on-surface mb-2">Confirmación</h3>
-            <p id="confirmModalMessage" class="text-on-surface-variant text-sm mb-6">¿Estás seguro de realizar esta acción?</p>
+            <h3 id="confirmModalTitle" class="text-xl font-headline font-bold text-slate-900 dark:text-on-surface mb-2">Confirmación</h3>
+            <p id="confirmModalMessage" class="text-slate-500 dark:text-on-surface-variant text-sm mb-6">¿Estás seguro de realizar esta acción?</p>
             
             <form id="confirmModalForm" method="post" class="flex gap-4">
                 <input type="hidden" name="projectId" value="@Model.Id" />
                 <input type="hidden" id="confirmModalTaskId" name="id" value="" />
                 
-                <button type="button" onclick="closeConfirmModal()" class="flex-1 py-3 rounded-lg border border-outline-variant/30 text-on-surface-variant font-bold text-sm hover:bg-surface-container-high transition-all">Cancelar</button>
-                <button type="submit" id="confirmModalSubmitBtn" class="flex-1 py-3 bg-primary text-on-primary-container rounded-lg font-bold text-sm hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all">Confirmar</button>
+                <button type="button" onclick="closeConfirmModal()" class="flex-1 py-3 rounded-lg border border-slate-200 dark:border-outline-variant/30 text-slate-600 dark:text-on-surface-variant font-bold text-sm hover:bg-slate-50 dark:hover:bg-surface-container-high transition-all">Cancelar</button>
+                <button type="submit" id="confirmModalSubmitBtn" class="flex-1 py-3 bg-primary text-slate-900 rounded-lg font-bold text-sm hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all">Confirmar</button>
             </form>
         </div>
     </div>
@@ -236,95 +236,4 @@
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script>
-        // --- DRAG & DROP ---
-        const taskList = document.getElementById('taskList');
-        if (taskList) {
-            new Sortable(taskList, {
-                animation: 150,
-                handle: '.cursor-grab',
-                ghostClass: 'bg-surface-container-highest',
-                onEnd: function (evt) {
-                    const taskId = evt.item.getAttribute('data-task-id');
-                    const newOrder = evt.newIndex + 1;
-                    fetch(`/Tasks/Reorder?id=${taskId}&newOrder=${newOrder}`, { method: 'POST' });
-                }
-            });
-        }
-        
-        // --- 1. LÓGICA DEL MODAL DE FORMULARIO (AÑADIR / EDITAR) ---
-        function openTaskFormModal(mode, id = '', title = '', priorityStr = '') {
-            const form = document.getElementById('taskForm');
-            const titleEl = document.getElementById('taskFormTitle');
-            const iconEl = document.getElementById('taskFormIcon');
-            const submitBtn = document.getElementById('taskFormSubmitBtn');
-            const headerBar = document.getElementById('taskFormHeaderBar');
-
-            if (mode === 'add') {
-                titleEl.innerText = 'Añadir Nueva Tarea';
-                iconEl.innerText = 'add_task';
-                iconEl.className = 'material-symbols-outlined text-primary';
-                submitBtn.innerText = 'Añadir al Sprint';
-                submitBtn.className = 'flex-1 py-3 px-4 rounded-lg bg-primary text-on-primary-container font-bold text-sm hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all';
-                headerBar.className = 'absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-container';
-                form.action = '/Tasks/Create';
-                
-                document.getElementById('taskFormId').value = '';
-                document.getElementById('taskFormTitleInput').value = '';
-                document.getElementById('taskFormPriority').value = 1; // Por defecto Medium
-            } else {
-                titleEl.innerText = 'Editar Tarea';
-                iconEl.innerText = 'edit_note';
-                iconEl.className = 'material-symbols-outlined text-tertiary-dim';
-                submitBtn.innerText = 'Guardar Cambios';
-                submitBtn.className = 'flex-1 py-3 px-4 rounded-lg bg-tertiary-dim text-background font-bold text-sm hover:shadow-[0_0_20px_rgba(240,224,74,0.4)] transition-all';
-                headerBar.className = 'absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-tertiary-dim to-tertiary';
-                form.action = '/Tasks/Edit';
-                
-                document.getElementById('taskFormId').value = id;
-                document.getElementById('taskFormTitleInput').value = title;
-                const priorityMap = { "Low": 0, "Medium": 1, "High": 2, "Urgent": 3 };
-                document.getElementById('taskFormPriority').value = priorityMap[priorityStr] !== undefined ? priorityMap[priorityStr] : 1;
-            }
-            document.getElementById('taskFormModal').classList.remove('hidden');
-        }
-        function closeTaskFormModal() { document.getElementById('taskFormModal').classList.add('hidden'); }
-
-        // Intermediario seguro para la lectura de datos del botón Editar
-        function handleEditClick(btn) {
-            const id = btn.getAttribute('data-id');
-            const title = btn.getAttribute('data-title');
-            const priority = btn.getAttribute('data-priority');
-            openTaskFormModal('edit', id, title, priority);
-        }
-
-        // --- 2. LÓGICA DEL MODAL DE CONFIRMACIÓN (COMPLETAR / ELIMINAR / BULK) ---
-        function openConfirmModal(title, icon, message, actionUrl, taskId = '', btnText = 'Confirmar', isDanger = false) {
-            document.getElementById('confirmModalTitle').innerText = title;
-            document.getElementById('confirmModalMessage').innerText = message;
-            document.getElementById('confirmModalForm').action = actionUrl;
-            document.getElementById('confirmModalTaskId').value = taskId;
-            
-            const submitBtn = document.getElementById('confirmModalSubmitBtn');
-            const iconContainer = document.getElementById('confirmModalIconContainer');
-            const iconEl = document.getElementById('confirmModalIcon');
-            
-            submitBtn.innerText = btnText;
-            iconEl.innerText = icon;
-
-
-            if (isDanger) {
-                submitBtn.className = "flex-1 py-3 bg-error text-white rounded-lg font-bold text-sm hover:shadow-[0_0_20px_rgba(255,180,171,0.4)] transition-all";
-                iconContainer.className = "w-16 h-16 bg-error/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-error/30";
-                iconEl.className = "material-symbols-outlined text-error text-3xl";
-            } else {
-                submitBtn.className = "flex-1 py-3 bg-primary text-on-primary-container rounded-lg font-bold text-sm hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all";
-                iconContainer.className = "w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-primary/30";
-                iconEl.className = "material-symbols-outlined text-primary text-3xl";
-            }
-
-            document.getElementById('confirmModal').classList.remove('hidden');
-        }
-        function closeConfirmModal() { document.getElementById('confirmModal').classList.add('hidden'); }
-    </script>
 }
