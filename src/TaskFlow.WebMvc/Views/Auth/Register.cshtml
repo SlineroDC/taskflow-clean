@@ -126,4 +126,35 @@
             icon.textContent = 'visibility';
         }
     }
+
+            function initPasswordMatchValidation(passwordId, confirmId) {
+            const pwd = document.getElementById(passwordId);
+            const confirmPwd = document.getElementById(confirmId);
+
+            if(!pwd || !confirmPwd) return;
+
+            const checkMatch = () => {
+                if (confirmPwd.value === '') {
+                    confirmPwd.classList.remove('ring-2', 'ring-green-500', 'border-green-500', 'ring-error', 'border-error');
+                    return;
+                }
+
+                if (pwd.value === confirmPwd.value) {
+                    confirmPwd.classList.remove('focus:ring-primary', 'focus:ring-error', 'ring-error', 'border-error', 'dark:border-transparent');
+                    confirmPwd.classList.add('ring-2', 'ring-green-500', 'border-green-500', 'focus:ring-green-500');
+                } else {
+                    confirmPwd.classList.remove('focus:ring-primary', 'ring-2', 'ring-green-500', 'border-green-500', 'focus:ring-green-500');
+                    confirmPwd.classList.add('ring-2', 'ring-error', 'border-error', 'focus:ring-error');
+                }
+            };
+
+            pwd.addEventListener('input', checkMatch);
+            confirmPwd.addEventListener('input', checkMatch);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            initPasswordMatchValidation('newPwd', 'confirmPwd');
+            initPasswordMatchValidation('regPassword', 'regConfirm'); 
+        });
 </script>

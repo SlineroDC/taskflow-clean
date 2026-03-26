@@ -11,8 +11,7 @@
     </div>
     <div class="hidden md:flex items-center gap-8 font-manrope font-medium text-sm">
         <a asp-controller="Home" asp-action="Docs" class="text-on-background font-bold border-b-2 border-primary pb-1">Docs</a>
-        <a class="text-on-background/70 hover:text-on-background transition-colors duration-300" href="#">Community</a>
-        <a class="text-on-background/70 hover:text-on-background transition-colors duration-300" href="#">Updates</a>
+        <a asp-controller="Home" asp-action="Community" class="text-on-background/70 hover:text-on-background transition-colors duration-300">Community</a>
     </div>
     <div class="flex items-center gap-2 md:gap-4">
         @if (User.Identity is { IsAuthenticated: true })

@@ -79,13 +79,13 @@
     }
 
     <section class="bg-surface-container rounded-2xl border border-outline-variant/10 overflow-visible shadow-lg relative">
-        <div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low rounded-t-2xl relative z-10">
+        <div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low rounded-t-2xl relative z-30">
             <h3 class="text-lg font-headline font-bold text-on-surface flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary">format_list_bulleted</span> Tareas del Sprint
             </h3>
         </div>
 
-        <div class="divide-y divide-outline-variant/5 relative z-0" id="taskList">
+        <div class="divide-y divide-outline-variant/5 relative z-20" id="taskList">
             @if (!Model.Tasks.Any())
             {
                 <div class="p-12 text-center">
@@ -109,10 +109,20 @@
                         
                         <span class="material-symbols-outlined text-outline-variant/30 cursor-grab hover:text-on-surface-variant active:cursor-grabbing">drag_indicator</span>
                         
-                        <button type="button" onclick="openConfirmModal('¿Completar Tarea?', 'task_alt', 'Esta acción marcará la tarea como terminada en el Sprint.', '/Tasks/Complete', '@task.Id', 'Sí, completar')" 
-                                class="w-6 h-6 shrink-0 rounded-full border-2 @(task.IsCompleted ? "bg-primary border-primary text-background pointer-events-none" : "border-outline-variant/50 hover:border-primary") flex items-center justify-center transition-colors">
-                            @if(task.IsCompleted) { <span class="material-symbols-outlined text-[14px] font-bold">check</span> }
-                        </button>
+                        @if (!task.IsCompleted)
+                        {
+                            <button type="button" onclick="openConfirmModal('¿Completar Tarea?', 'task_alt', 'Esta acción marcará la tarea como terminada en el Sprint.', '/Tasks/Complete', '@task.Id', 'Sí, completar')" 
+                                    class="w-6 h-6 shrink-0 rounded-full border-2 border-outline-variant/50 hover:border-primary flex items-center justify-center transition-colors">
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" onclick="openConfirmModal('¿Reabrir Tarea?', 'undo', 'Esta acción devolverá la tarea al estado de pendiente.', '/Tasks/Uncomplete', '@task.Id', 'Reabrir tarea')" 
+                                    class="w-6 h-6 shrink-0 rounded-full border-2 bg-primary border-primary text-background hover:bg-error hover:border-error flex items-center justify-center transition-colors group/check">
+                                <span class="material-symbols-outlined text-[14px] font-bold group-hover/check:hidden">check</span>
+                                <span class="material-symbols-outlined text-[14px] font-bold hidden group-hover/check:block">close</span>
+                            </button>
+                        }
                         
                         <div class="flex-1 min-w-0 flex items-center gap-3">
                             <span class="px-2 py-0.5 rounded border text-[10px] font-bold uppercase tracking-widest @priorityColor">
@@ -125,7 +135,7 @@
                             <button type="button" class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded">
                                 <span class="material-symbols-outlined text-[20px]">more_vert</span>
                             </button>
-                            <div class="absolute right-0 top-full mt-1 w-36 bg-surface-container-highest border border-outline-variant/20 rounded-lg shadow-xl opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all z-20 overflow-hidden">
+                            <div class="absolute right-0 top-full mt-1 w-36 bg-surface-container-highest border border-outline-variant/20 rounded-lg shadow-xl opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all z-50 overflow-hidden">
                                 
                                 <button type="button" data-id="@task.Id" data-title="@task.Title" data-priority="@task.Priority" onclick="handleEditClick(this)" class="w-full text-left px-4 py-2 text-sm text-on-surface hover:text-primary hover:bg-surface-container-low transition-colors flex items-center gap-2">
                                     <span class="material-symbols-outlined text-[16px]">edit</span> Editar

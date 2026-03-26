@@ -38,6 +38,13 @@ public class TaskItem
         IsCompleted = true;
     }
 
+    public void Uncomplete()
+    {
+        if (!IsCompleted)
+            throw new DomainException("La tarea ya está pendiente.");
+        IsCompleted = false;
+    }
+
     public void UpdateDetails(string title, TaskPriority priority)
     {
         Title = title;

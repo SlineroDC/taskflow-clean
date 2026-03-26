@@ -44,6 +44,21 @@ public class AuthService(IUserRepository userRepository) : IAuthService
         return user;
     }
 
+    public async Task UpdateProfileAsync(Guid id, UpdateProfileDto dto)
+    {
+        var user =
+            await userRepository.GetByIdAsync(id)
+            ?? throw new DomainException("Usuario no encontrado.");
+
+        if (string.IsNullOrWhiteSpace(dto.FullName))
+            throw new DomainException("El nombre no puede estar vacío.");
+
+        // Usamos el nuevo método de tu entidad
+        user.UpdateProfile(dto.FullName, dto.Avatar);
+
+        await userRepository.SaveChangesAsync();
+    }
+
     public async Task ChangePasswordAsync(Guid id, ChangePasswordDto dto)
     {
         // 1. Validaciones de entrada

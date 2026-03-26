@@ -1,6 +1,6 @@
 @{
     ViewData["Title"] = "Manual de Usuario";
-    Layout = "_Layout"; 
+    Layout = User.Identity?.IsAuthenticated == true ? "_Layout" : "_PublicLayout";
 }
 
 <div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-4 gap-12 pb-16 relative">
@@ -12,6 +12,7 @@
             <li><a class="text-on-surface-variant hover:text-primary transition-all block border-l-2 border-transparent hover:border-primary pl-4 py-1" href="#opensource">Open Source & GitHub</a></li>
             <li><a class="text-on-surface-variant hover:text-primary transition-all block border-l-2 border-transparent hover:border-primary pl-4 py-1" href="#installation">Despliegue Local</a></li>
             <li><a class="text-on-surface-variant hover:text-primary transition-all block border-l-2 border-transparent hover:border-primary pl-4 py-1" href="#rules">Reglas de Negocio (Core)</a></li>
+            <li><a class="text-on-surface-variant hover:text-primary transition-all block border-l-2 border-transparent hover:border-primary pl-4 py-1" href="#architecture">Arquitectura Limpia</a></li>
         </ul>
         
         <div class="mt-12 bg-primary/5 rounded-xl p-6 border border-primary/20 shadow-[0_0_15px_rgba(152,202,63,0.05)] relative overflow-hidden">
@@ -119,6 +120,32 @@ public async Task ReorderTaskAsync(Guid taskId, int newOrder)
     
     await _repository.SaveChangesAsync();
 }</code></pre>
+            </div>
+        </section>
+
+        <section id="architecture" class="mb-16 scroll-mt-24">
+            <h2 class="text-2xl font-headline font-bold text-on-surface mb-4 flex items-center gap-2 border-b border-outline-variant/10 pb-2">
+                <span class="material-symbols-outlined text-primary">layers</span> Arquitectura Limpia
+            </h2>
+            <p class="text-on-surface-variant leading-relaxed mb-6">El proyecto está dividido en 4 capas estrictas para evitar el acoplamiento y facilitar las pruebas unitarias:</p>
+            
+            <div class="space-y-4">
+                <div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-primary shadow-sm">
+                    <h4 class="font-bold text-on-surface">1. Core / Domain</h4>
+                    <p class="text-sm text-on-surface-variant mt-1">El corazón del sistema. Contiene Entidades (User, Project, TaskItem), Enums y Excepciones de Dominio. <strong>No tiene dependencias externas.</strong></p>
+                </div>
+                <div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-tertiary-dim shadow-sm">
+                    <h4 class="font-bold text-on-surface">2. Application</h4>
+                    <p class="text-sm text-on-surface-variant mt-1">Contiene los Casos de Uso (Services), Interfaces (Repository patterns) y DTOs. Orquesta la lógica sin saber cómo se guardan los datos.</p>
+                </div>
+                <div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-blue-400 shadow-sm">
+                    <h4 class="font-bold text-on-surface">3. Infrastructure</h4>
+                    <p class="text-sm text-on-surface-variant mt-1">Implementa las interfaces de Application. Aquí vive Entity Framework Core, la conexión a PostgreSQL y los repositorios reales.</p>
+                </div>
+                <div class="bg-surface-container-low p-5 rounded-lg border-l-4 border-error shadow-sm">
+                    <h4 class="font-bold text-on-surface">4. WebMvc / UI</h4>
+                    <p class="text-sm text-on-surface-variant mt-1">La capa de presentación. Maneja controladores, vistas Razor, Tailwind CSS y la autenticación mediante cookies y Google OAuth.</p>
+                </div>
             </div>
         </section>
     </div>

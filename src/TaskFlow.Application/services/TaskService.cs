@@ -54,6 +54,17 @@ public class TaskService(ITaskItemRepository taskRepository, IProjectRepository 
         await taskRepository.SaveChangesAsync();
     }
 
+    public async Task UncompleteTaskAsync(Guid taskId)
+    {
+        var task =
+            await taskRepository.GetByIdAsync(taskId)
+            ?? throw new DomainException("Tarea no encontrada.");
+
+        task.Uncomplete();
+
+        await taskRepository.SaveChangesAsync();
+    }
+
     public async Task ReorderTaskAsync(Guid projectId, Guid taskId, int newOrder)
     {
         if (newOrder < 1)

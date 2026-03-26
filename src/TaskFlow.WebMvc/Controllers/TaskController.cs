@@ -48,6 +48,21 @@ public class TasksController : Controller
     }
 
     [HttpPost]
+    public async Task<IActionResult> Uncomplete(Guid id, Guid projectId)
+    {
+        try
+        {
+            await _taskService.UncompleteTaskAsync(id);
+            TempData["SuccessMessage"] = "Tarea reabierta y devuelta al Backlog.";
+        }
+        catch (DomainException ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+        }
+        return RedirectToAction("Details", "Projects", new { id = projectId });
+    }
+
+    [HttpPost]
     public async Task<IActionResult> Delete(Guid id, Guid projectId)
     {
         try
