@@ -3,67 +3,67 @@
     Layout = User.Identity?.IsAuthenticated == true ? "_Layout" : "_PublicLayout";
 }
 
-<div class="max-w-4xl mx-auto pb-16 space-y-12">
-    <header class="border-b border-slate-200 dark:border-outline-variant/10 pb-8 text-center">
+<div class="max-w-4xl mx-auto pb-16 space-y-12 pt-16">
+    <header class="border-b border-outline-variant/10 pb-8 text-center pt-24">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
             <span class="material-symbols-outlined text-primary text-3xl">forum</span>
         </div>
-        <h1 class="font-headline text-4xl font-extrabold text-slate-900 dark:text-on-surface mb-4">Metodología & Comunidad</h1>
-        <p class="text-slate-600 dark:text-on-surface-variant text-lg max-w-2xl mx-auto">Conecta con otros desarrolladores y domina las ceremonias ágiles para llevar tus proyectos al siguiente nivel.</p>
+        <h1 class="font-headline text-4xl font-extrabold text-on-surface mb-4">Metodología & Comunidad</h1>
+        <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">Conecta con otros desarrolladores y domina las ceremonias ágiles para llevar tus proyectos al siguiente nivel.</p>
     </header>
 
-    <article class="bg-white dark:bg-surface-container rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-outline-variant/10 shadow-sm dark:shadow-2xl relative overflow-hidden">
+    <article class="bg-surface-container rounded-3xl p-8 md:p-12 border border-outline-variant/10 shadow-2xl relative overflow-hidden">
         <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
 
-        <div class="relative z-10 prose prose-slate dark:prose-invert max-w-none">
-            <h2 class="text-3xl font-headline font-bold text-slate-900 dark:text-on-surface mb-6 flex items-center gap-3">
+        <div class="relative z-10 prose prose-invert max-w-none">
+            <h2 class="text-3xl font-headline font-bold text-on-surface mb-6 flex items-center gap-3">
                 <span class="material-symbols-outlined text-primary">sprint</span>
                 Gestión de Sprints con Scrum
             </h2>
             
-            <p class="text-slate-600 dark:text-on-surface-variant leading-relaxed text-lg mb-8">
+            <p class="text-on-surface-variant leading-relaxed text-lg mb-8">
                 Implementar Scrum no se trata solo de mover tarjetas de un lado a otro. Al momento de estructurar las bases de Sintegra Core, puedes dividir el desarrollo de tus APIs en .NET y la conexión con interfaces en Angular mediante ciclos de entrega de 2 a 4 semanas. Esto te otorga un control de calidad absoluto.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <div class="bg-slate-50 dark:bg-surface-container-high p-6 rounded-2xl border border-slate-200 dark:border-outline-variant/10">
-                    <h4 class="font-bold text-slate-900 dark:text-on-surface mb-2 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-orange-500 dark:text-tertiary-dim text-lg">event</span> Sprint Planning
+                <div class="bg-surface-container-high p-6 rounded-2xl border border-outline-variant/10">
+                    <h4 class="font-bold text-on-surface mb-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-tertiary-dim text-lg">event</span> Sprint Planning
                     </h4>
-                    <p class="text-sm text-slate-600 dark:text-on-surface-variant leading-relaxed">
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
                         Selecciona qué tareas del backlog se abordarán. Estima los puntos de historia basándote en la complejidad técnica (ej. configurar un nuevo endpoint en C# versus ajustar CSS).
                     </p>
                 </div>
-                <div class="bg-slate-50 dark:bg-surface-container-high p-6 rounded-2xl border border-slate-200 dark:border-outline-variant/10">
-                    <h4 class="font-bold text-slate-900 dark:text-on-surface mb-2 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-blue-500 dark:text-blue-400 text-lg">sync</span> Daily Standup
+                <div class="bg-surface-container-high p-6 rounded-2xl border border-outline-variant/10">
+                    <h4 class="font-bold text-on-surface mb-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-blue-400 text-lg">sync</span> Daily Standup
                     </h4>
-                    <p class="text-sm text-slate-600 dark:text-on-surface-variant leading-relaxed">
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
                         15 minutos diarios. ¿Qué hice ayer? ¿Qué haré hoy? ¿Hay algún bloqueador técnico? Mantiene al equipo sincronizado sin micromanagement.
                     </p>
                 </div>
-                <div class="bg-slate-50 dark:bg-surface-container-high p-6 rounded-2xl border border-slate-200 dark:border-outline-variant/10">
-                    <h4 class="font-bold text-slate-900 dark:text-on-surface mb-2 flex items-center gap-2">
+                <div class="bg-surface-container-high p-6 rounded-2xl border border-outline-variant/10">
+                    <h4 class="font-bold text-on-surface mb-2 flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary text-lg">fact_check</span> Sprint Review
                     </h4>
-                    <p class="text-sm text-slate-600 dark:text-on-surface-variant leading-relaxed">
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
                         Demuestra el software funcionando al final de la iteración. Solo se muestra lo que cumple con el <em>Definition of Done</em>.
                     </p>
                 </div>
-                <div class="bg-slate-50 dark:bg-surface-container-high p-6 rounded-2xl border border-slate-200 dark:border-outline-variant/10">
-                    <h4 class="font-bold text-slate-900 dark:text-on-surface mb-2 flex items-center gap-2">
+                <div class="bg-surface-container-high p-6 rounded-2xl border border-outline-variant/10">
+                    <h4 class="font-bold text-on-surface mb-2 flex items-center gap-2">
                         <span class="material-symbols-outlined text-error text-lg">psychology</span> Retrospectiva
                     </h4>
-                    <p class="text-sm text-slate-600 dark:text-on-surface-variant leading-relaxed">
+                    <p class="text-sm text-on-surface-variant leading-relaxed">
                         ¿Qué salió bien y qué podemos mejorar? Vital para ajustar procesos y evitar acumular deuda técnica en las siguientes fases de desarrollo.
                     </p>
                 </div>
             </div>
 
-            <div class="bg-slate-900 dark:bg-[#0d1117] rounded-xl p-6 font-mono text-sm border border-slate-800 dark:border-outline-variant/20 shadow-inner mt-8">
+            <div class="bg-[#0d1117] rounded-xl p-6 font-mono text-sm border border-outline-variant/20 shadow-inner mt-8">
                 <p class="text-primary mb-2">// Flujo ideal de un Sprint en TaskFlow</p>
-                <ol class="list-decimal list-inside text-slate-300 dark:text-on-surface-variant space-y-2">
-                    <li>Crear Proyecto -> Estado: <span class="text-white dark:text-on-surface">Draft</span></li>
+                <ol class="list-decimal list-inside text-on-surface-variant space-y-2">
+                    <li>Crear Proyecto -> Estado: <span class="text-on-surface">Draft</span></li>
                     <li>Llenar el Backlog (Añadir Tareas)</li>
                     <li>Asignar Prioridades (Urgente, Alta, Media, Baja)</li>
                     <li>Activar Proyecto -> Estado: <span class="text-primary">Active</span></li>
@@ -71,30 +71,30 @@
                 </ol>
             </div>
             
-            <h2 class="text-3xl font-headline font-bold text-slate-900 dark:text-on-surface mb-6 mt-16 flex items-center gap-3">
+            <h2 class="text-3xl font-headline font-bold text-on-surface mb-6 mt-16 flex items-center gap-3">
                 <span class="material-symbols-outlined text-primary">group_work</span>
                 Ecosistema & Participación
             </h2>
             
-            <p class="text-slate-600 dark:text-on-surface-variant leading-relaxed text-lg mb-8">
+            <p class="text-on-surface-variant leading-relaxed text-lg mb-8">
                 El desarrollo de software moderno no ocurre en aislamiento. Únete a las discusiones para reportar bugs, proponer nuevas features o mejorar el código existente.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="#" class="group block bg-[#5865F2]/5 dark:bg-[#5865F2]/10 border border-[#5865F2]/20 p-6 rounded-2xl hover:bg-[#5865F2]/10 dark:hover:bg-[#5865F2]/20 transition-all cursor-not-allowed">
+                <a href="#" class="group block bg-[#5865F2]/10 border border-[#5865F2]/20 p-6 rounded-2xl hover:bg-[#5865F2]/20 transition-all cursor-not-allowed">
                     <div class="flex items-center gap-3 mb-3">
                         <span class="material-symbols-outlined text-[#5865F2] text-2xl">forum</span>
-                        <h4 class="font-bold text-slate-900 dark:text-on-surface group-hover:text-[#5865F2] transition-colors">Servidor de Discord</h4>
+                        <h4 class="font-bold text-on-surface group-hover:text-[#5865F2] transition-colors">Servidor de Discord</h4>
                     </div>
-                    <p class="text-sm text-slate-600 dark:text-on-surface-variant">Próximamente abriremos un servidor para debatir sobre C#, Arquitectura Limpia y compartir avances de los Sprints.</p>
+                    <p class="text-sm text-on-surface-variant">Próximamente abriremos un servidor para debatir sobre C#, Arquitectura Limpia y compartir avances de los Sprints.</p>
                 </a>
                 
-                <a href="https://github.com/SlineroDC/TaskFlow/issues" target="_blank" class="group block bg-slate-50 dark:bg-surface-container-high border border-slate-200 dark:border-outline-variant/10 p-6 rounded-2xl hover:border-primary/50 transition-all">
+                <a href="https://github.com/SlineroDC/TaskFlow/issues" target="_blank" class="group block bg-surface-container-high border border-outline-variant/10 p-6 rounded-2xl hover:border-primary/50 transition-all">
                     <div class="flex items-center gap-3 mb-3">
-                        <span class="material-symbols-outlined text-slate-500 dark:text-on-surface-variant text-2xl group-hover:text-primary transition-colors">bug_report</span>
-                        <h4 class="font-bold text-slate-900 dark:text-on-surface group-hover:text-primary transition-colors">Issue Tracker</h4>
+                        <span class="material-symbols-outlined text-on-surface-variant text-2xl group-hover:text-primary transition-colors">bug_report</span>
+                        <h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Issue Tracker</h4>
                     </div>
-                    <p class="text-sm text-slate-600 dark:text-on-surface-variant">¿Encontraste un error? Repórtalo directamente en nuestro tablero de GitHub para agregarlo al próximo Sprint.</p>
+                    <p class="text-sm text-on-surface-variant">¿Encontraste un error? Repórtalo directamente en nuestro tablero de GitHub para agregarlo al próximo Sprint.</p>
                 </a>
             </div>
         </div>
