@@ -1,0 +1,71 @@
+    @{
+        ViewData["Title"] = "Centro de Seguridad";
+        Layout = "_PublicLayout";
+        ViewData["BodyClass"] = "bg-background text-on-background font-body selection:bg-primary selection:text-on-primary-container overflow-x-hidden relative";
+    }
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#060e1f]/90 backdrop-blur-xl flex justify-between items-center h-16 px-8 border-b border-outline-variant/15 transition-all">
+        <a asp-controller="Home" asp-action="Index" class="text-xl font-black text-primary uppercase tracking-widest hover:opacity-80 transition-opacity">TaskFlow</a>
+        <div class="flex items-center gap-4">
+            <a asp-controller="Home" asp-action="Index" class="text-sm font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                Regresar
+            </a>
+        </div>
+    </nav>
+
+    <main class="relative pt-24 pb-16 max-w-6xl mx-auto px-6">
+        <div class="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-primary/10 kinetic-blob rounded-full pointer-events-none"></div>
+        
+        <header class="mb-16 text-center space-y-4">
+            <span class="material-symbols-outlined text-5xl text-primary mb-4 block">shield_locked</span>
+            <h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight">Arquitectura de Seguridad</h1>
+            <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">Cómo protegemos tus datos, tus proyectos y tu flujo de trabajo mediante principios de diseño de software rigurosos.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+            <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-8 hover:bg-surface-container-high transition-colors group">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 border border-primary/20 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary">architecture</span>
+                </div>
+                <h3 class="font-headline text-xl font-bold mb-3">Clean Architecture</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">Separación estricta de responsabilidades. La lógica de negocio está aislada en el Dominio, protegida de frameworks externos y de la base de datos.</p>
+            </div>
+
+            <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-8 hover:bg-surface-container-high transition-colors group">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 border border-primary/20 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary">data_object</span>
+                </div>
+                <h3 class="font-headline text-xl font-bold mb-3">Protección de Datos</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">Uso riguroso de DTOs (Data Transfer Objects) para asegurar que nunca se exponga información sensible de las entidades directamente al cliente.</p>
+            </div>
+
+            <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-8 hover:bg-surface-container-high transition-colors group">
+                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 border border-primary/20 group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-primary">gpp_maybe</span>
+                </div>
+                <h3 class="font-headline text-xl font-bold mb-3">Manejo de Errores</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">Excepciones de dominio personalizadas que evitan fugas de información técnica. Middlewares globales para atrapar errores inesperados de forma segura.</p>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-surface-container-high border border-outline-variant/20 rounded-2xl p-8 text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="text-center">
+                    <div class="text-3xl font-black text-primary">100%</div>
+                    <div class="text-xs uppercase tracking-widest text-on-surface-variant">Uptime Seguro</div>
+                </div>
+                <div class="w-px h-12 bg-outline-variant/30 hidden md:block"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-black text-primary">AES-256</div>
+                    <div class="text-xs uppercase tracking-widest text-on-surface-variant">Encryption Standard</div>
+                </div>
+                <div class="w-px h-12 bg-outline-variant/30 hidden md:block"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-black text-primary">ZERO</div>
+                    <div class="text-xs uppercase tracking-widest text-on-surface-variant">Trust Protocol</div>
+                </div>
+            </div>
+        </div>
+    </main>

@@ -1,0 +1,129 @@
+@{
+    ViewData["Title"] = "Iniciar Sesión | TaskFlow Kinetic Academy";
+    Layout = "_AuthLayout";
+}
+
+<a asp-controller="Home" asp-action="Index" class="absolute top-6 left-6 md:top-10 md:left-12 flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-bold z-50 bg-surface-container-highest/50 p-2 pr-4 rounded-full backdrop-blur-md border border-outline-variant/20 text-xs md:text-base shadow-sm">
+    <span class="material-symbols-outlined text-sm md:text-lg">arrow_back</span>
+    <span class="hidden sm:inline">Volver al Inicio</span>
+    <span class="sm:hidden">Volver</span>
+</a>
+
+<main class="min-h-screen flex flex-col md:flex-row">
+    <section class="relative w-full md:w-1/2 flex flex-col justify-center md:justify-between p-8 pt-24 md:px-12 md:pb-12 md:pt-32 bg-surface-container-lowest overflow-hidden md:min-h-screen">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-surface-container-low via-surface-container-lowest to-surface-container-high opacity-90"></div>
+            <div class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-container/20 rounded-full blur-[100px]"></div>
+        </div>
+        
+        <div class="relative z-10 flex items-center gap-3 mb-6 md:mb-0">
+            <div class="w-8 h-8 md:w-10 md:h-10 bg-primary rounded flex items-center justify-center shadow-[0_0_20px_rgba(188,241,97,0.3)]">
+                <span class="material-symbols-outlined text-on-primary-container font-bold text-sm md:text-base" style="font-variation-settings: 'FILL' 1;">bolt</span>
+            </div>
+            <span class="font-headline text-xl md:text-2xl font-black text-primary uppercase tracking-widest">TaskFlow</span>
+        </div>
+        
+        <div class="relative z-10 max-w-lg mt-4 md:mt-0">
+            <p class="text-primary font-headline font-bold text-xs md:text-sm tracking-[0.2em] uppercase mb-2 md:mb-4">Kinetic Academy</p>
+            <h1 class="font-headline text-3xl md:text-5xl font-extrabold text-on-surface leading-tight tracking-tighter mb-4 md:mb-8">
+                Domina el <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Momentum</span>.
+            </h1>
+            <p class="text-on-surface-variant text-sm md:text-xl font-light leading-relaxed max-w-md hidden sm:block">
+                La terminal digital premium para gestión de proyectos de alto impacto y educación técnica.
+            </p>
+        </div>
+        
+        <div class="relative z-10 pt-12 hidden md:block">
+            <div class="flex flex-wrap gap-8 md:gap-12 items-center">
+                <div>
+                    <p class="text-2xl font-headline font-bold text-on-surface">12k+</p>
+                    <p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1 font-bold">Estudiantes Activos</p>
+                </div>
+                <div class="w-px h-8 bg-outline-variant/30"></div>
+                <div>
+                    <p class="text-2xl font-headline font-bold text-on-surface">4.9/5</p>
+                    <p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1 font-bold">Calificación</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="w-full md:w-1/2 bg-surface flex items-center justify-center p-6 py-12 md:p-12 lg:p-24 md:min-h-screen">
+        <div class="w-full max-w-md space-y-8 md:space-y-10">
+            <div class="space-y-2 text-center md:text-left">
+                <h2 class="font-headline text-2xl md:text-3xl font-bold tracking-tight text-on-surface">Iniciar Sesión</h2>
+                <p class="text-on-surface-variant text-sm md:text-base font-medium">Bienvenido de nuevo a la terminal.</p>
+            </div>
+            
+            <form asp-controller="Auth" asp-action="Login" method="post" class="space-y-5 md:space-y-6">
+                <div class="space-y-2">
+                    <label class="block text-xs md:text-sm font-semibold tracking-wide text-on-surface-variant uppercase" for="email">Correo Electrónico</label>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
+                        </div>
+                        <input class="block w-full pl-12 pr-4 py-3 md:py-4 bg-surface-container-high border-none text-on-surface rounded-lg focus:ring-2 focus:ring-primary focus:bg-surface-container-highest transition-all duration-300 placeholder-on-surface-variant/30" id="email" name="email" placeholder="nombre@kinetic.academy" required type="email"/>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <label class="block text-xs md:text-sm font-semibold tracking-wide text-on-surface-variant uppercase" for="password">Clave de Seguridad</label>
+                        <a class="text-[10px] md:text-xs font-bold text-primary hover:text-primary-dim transition-colors uppercase tracking-wider" href="#">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+                        </div>
+                        <input class="block w-full pl-12 pr-12 py-3 md:py-4 bg-surface-container-high border-none text-on-surface rounded-lg focus:ring-2 focus:ring-primary focus:bg-surface-container-highest transition-all duration-300 placeholder-on-surface-variant/30" id="password" name="password" placeholder="••••••••••••" required type="password"/>
+                        <button class="absolute inset-y-0 right-0 pr-4 flex items-center text-on-surface-variant hover:text-on-surface transition-colors" onclick="togglePassword('password', 'eyeIconPassword')" type="button">
+                            <span class="material-symbols-outlined" id="eyeIconPassword">visibility</span>
+                        </button>   
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <div class="relative flex items-center">
+                        <input class="w-4 h-4 md:w-5 md:h-5 rounded bg-surface-container-high border-none text-primary focus:ring-primary focus:ring-offset-background cursor-pointer" id="remember" type="checkbox"/>
+                    </div>
+                    <label class="text-xs md:text-sm font-medium text-on-surface-variant cursor-pointer select-none" for="remember">Recordar sesión por 30 días</label>
+                </div>
+                
+                <button type="submit" class="w-full group relative flex items-center justify-center py-3 md:py-4 px-6 bg-gradient-to-r from-primary to-primary-container text-on-primary-container font-headline font-bold rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(152,202,63,0.3)]">
+                    <span class="relative z-10 flex items-center gap-2 uppercase tracking-widest text-xs md:text-sm">
+                        Inicializar Autenticación
+                        <span class="material-symbols-outlined text-base md:text-lg">arrow_forward</span>
+                    </span>
+                </button>
+            </form>
+
+            <div class="relative py-2 md:py-4">
+                <div aria-hidden="true" class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-outline-variant/15"></div>
+                </div>
+                <div class="relative flex justify-center text-[10px] md:text-xs uppercase tracking-widest">
+                    <span class="bg-surface px-4 text-on-surface-variant font-bold">Protocolos de Acceso</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 md:gap-4">
+                <form asp-controller="Auth" asp-action="GoogleLogin" method="post" class="w-full">
+                    <button type="submit" class="w-full flex items-center justify-center gap-2 py-2 md:py-3 px-2 bg-surface-container text-on-surface rounded-lg hover:bg-surface-container-high transition-all border border-outline-variant/10 shadow-sm">
+                        <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
+                        <span class="text-xs md:text-sm font-bold tracking-tight">Google</span>
+                    </button>
+                </form>
+                <button class="flex items-center justify-center gap-2 py-2 md:py-3 px-2 bg-surface-container text-on-surface rounded-lg hover:bg-surface-container-high transition-all border border-outline-variant/10 shadow-sm">
+                    <svg class="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+                    <span class="text-xs md:text-sm font-bold tracking-tight">GitHub</span>
+                </button>
+            </div>
+            
+            <p class="text-center text-on-surface-variant text-xs md:text-sm font-medium">
+                ¿Nuevo en TaskFlow? 
+                <a asp-controller="Auth" asp-action="Register" class="text-primary font-bold hover:underline decoration-2 underline-offset-4 ml-1">Únete a la Academia</a>
+            </p>
+        </div>
+    </section>
+</main>

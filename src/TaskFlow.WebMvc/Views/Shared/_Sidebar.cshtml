@@ -1,0 +1,39 @@
+@using System.Security.Claims
+
+<aside id="app-sidebar" class="fixed inset-y-0 left-0 w-64 bg-surface border-r border-outline-variant/15 flex flex-col z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300">
+    <div class="h-16 flex items-center px-8 border-b border-outline-variant/10 shrink-0">
+        <a asp-controller="Projects" asp-action="Index" class="text-xl font-black text-primary uppercase tracking-widest flex items-center gap-2">
+            <img src="~/images/logo.png" alt="TaskFlow" class="w-8 h-8">
+            TaskFlow
+        </a>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2 custom-scrollbar">
+        <a asp-controller="Projects" asp-action="Index" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary font-bold transition-all">
+            <span class="material-symbols-outlined">space_dashboard</span> Dashboard
+        </a>
+        <a asp-controller="Home" asp-action="Settings" class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium">
+            <span class="material-symbols-outlined">settings</span> Configuración
+        </a>
+        <a asp-controller="Home" asp-action="Docs" class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-medium">
+            <span class="material-symbols-outlined">menu_book</span> Manual de Usuario
+        </a>
+    </nav>
+
+    <div class="p-4 border-t border-outline-variant/10 shrink-0">
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer border border-outline-variant/5">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary-container font-headline font-bold text-lg shadow-inner shrink-0">
+                @(User.FindFirstValue(ClaimTypes.Name)?.FirstOrDefault() ?? 'U')
+            </div>
+            <div class="flex-1 min-w-0">
+                <h4 class="text-sm font-bold text-on-surface truncate">@User.FindFirstValue(ClaimTypes.Name)</h4>
+                <p class="text-[10px] text-on-surface-variant truncate uppercase tracking-wider">Kinetic Member</p>
+            </div>
+            <form asp-controller="Auth" asp-action="Logout" method="post" class="shrink-0">
+                <button type="submit" class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-1" title="Cerrar Sesión">
+                    logout
+                </button>
+            </form>
+        </div>
+    </div>
+</aside>

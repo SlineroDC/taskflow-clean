@@ -1,50 +1,48 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="es" class="h-full"> <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TaskFlow.WebMvc</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TaskFlow.WebMvc.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - TaskFlow</title>
+    
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/css/tailwind.min.css" asp-append-version="true" />
+    
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #334155; border-radius: 10px; }
+    </style>
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TaskFlow.WebMvc</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+<body class="h-full antialiased bg-background text-[#dee5ff] selection:bg-primary selection:text-on-primary-container transition-colors duration-300">
+    
+    <partial name="_Sidebar" />
+
+    <div class="md:ml-64 flex flex-col min-h-screen relative overflow-hidden z-0 transition-all duration-300">
+        <div class="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-primary/20 dark:bg-primary/10 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary-container/30 dark:bg-secondary-container/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+        <partial name="_Topbar" />
+
+        <main class="flex-1 p-4 md:p-8 relative z-10 overflow-x-hidden">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - TaskFlow.WebMvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <div id="mobileOverlay" class="fixed inset-0 bg-slate-900/50 dark:bg-background/80 backdrop-blur-sm z-30 hidden md:hidden opacity-0 transition-opacity duration-300" onclick="toggleSidebar()"></div>
+
+    <partial name="_Notifications" />
+    
+    <script src="~/js/app.js" asp-append-version="true"></script>
+    <script src="~/js/projects.js" asp-append-version="true"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

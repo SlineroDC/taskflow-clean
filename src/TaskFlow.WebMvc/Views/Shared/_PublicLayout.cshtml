@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - TaskFlow</title>
+    
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/css/tailwind.min.css" asp-append-version="true" />
+    
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel, .glass-effect { background: rgba(26, 37, 63, 0.6); backdrop-filter: blur(20px); }
+        .kinetic-blob { filter: blur(80px); z-index: -1; }
+    </style>
+</head>
+<body class="h-full antialiased bg-background text-[#dee5ff] selection:bg-primary selection:text-on-primary-container transition-colors duration-300">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#060e1f]/80 backdrop-blur-xl flex justify-between items-center h-16 px-4 md:px-8 transition-all border-b border-outline-variant/10">
+        <div class="flex items-center gap-2">
+            <img src="~/images/logo.png" alt="TaskFlow" class="w-8 h-8 shrink-0">
+            <div class="hidden sm:block text-xl md:text-2xl font-black text-primary uppercase tracking-widest">TaskFlow</div>
+        </div>
+        <div class="hidden md:flex items-center gap-8 font-manrope font-medium text-sm">
+            <a asp-controller="Home" asp-action="Docs" class="text-on-background font-bold hover:text-primary transition-colors pb-1 border-b-2 border-transparent hover:border-primary">Docs</a>
+            <a asp-controller="Home" asp-action="Community" class="text-on-background/70 hover:text-on-background transition-colors duration-300">Community</a>
+        </div>
+        <div class="flex items-center gap-2 md:gap-4">
+            @if (User.Identity is { IsAuthenticated: true })
+            {
+                <a asp-controller="Projects" asp-action="Index" class="bg-primary text-on-primary-container px-3 md:px-5 py-2 rounded font-bold text-[10px] md:text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all active:scale-95 flex items-center gap-1 md:gap-2 whitespace-nowrap">
+                    <span class="hidden sm:inline">Dashboard</span>
+                    <span class="material-symbols-outlined text-[14px] md:text-[16px]">arrow_forward</span>
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Auth" asp-action="Login" class="text-xs md:text-sm font-bold text-on-background hover:text-primary transition-colors px-2 md:px-3 py-2 whitespace-nowrap">
+                    Iniciar Sesión
+                </a>
+                <a asp-controller="Auth" asp-action="Register" class="bg-primary text-on-primary-container px-3 md:px-5 py-2 rounded font-bold text-[10px] md:text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(152,202,63,0.4)] transition-all active:scale-95 whitespace-nowrap">
+                    Registrarse
+                </a>
+            }
+        </div>
+    </nav>
+    
+    @RenderBody()
+    
+    <partial name="_Notifications" />
+    
+    <script src="~/js/app.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
